@@ -1,0 +1,69 @@
+<header>
+  <div class="relative">
+    <div class="h-[5px] bg-black absolute top-0 left-0 right-0"></div>
+
+    {{!-- Mobile --}}
+    <div class="lg:hidden">
+
+      <div class="border-b border-b-black/30 md:hidden">
+        <div class="container max-w-full">
+          <div class="h-20 flex items-center justify-between gap-x-4">
+            <div class="logo ml-2">
+              <a class="block h-8" href="{{@site.url}}">
+                {{#if @site.logo}}
+                  <img class="h-full w-auto" src="{{@site.logo}}" alt="{{@site.brand_site_title}}" />
+                {{else}}
+                  {{@site.brand_site_title}}
+                {{/if}}
+              </a>
+            </div>
+            <button class="drawer-open text-black">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-9 h-9"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {{> drawer }}
+
+    </div>
+
+    {{!-- PC --}}
+    <div class="hidden lg:block">
+      <div class="py-5 border-b border-b-black/30">
+        <div class="container mx-auto">
+          <div class="relative">
+            <div class="absolute top-0 right-0 flex items-center gap-x-7 text-xs font-bold">
+              {{#if @member}}
+              <a href='#/portal/account'>MY</a>
+              {{else}}
+              <a class="" href="/signin/">로그인</a>
+              <a class="flex items-center justify-center w-20 h-[30px] rounded-full bg-core-blue hover:bg-black hover:text-core-blue" href="/signup/">구독하기</a>
+              {{/if}}
+            </div>
+
+            <div class="flex flex-col items-center py-2">
+              <div class="flex items-center justify-center relative">
+                <a class="text-5xl font-bold mt-4" href="{{@site.url}}">
+                  {{#if @site.logo}}
+                    <img class="max-h-[64px] w-auto h-full" src="{{@site.logo}}" alt="{{@site.brand_site_title}}" />
+                  {{else}}
+                    {{@site.brand_site_title}}
+                  {{/if}}
+                </a>
+              </div>
+              {{navigation type="secondary"}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-b border-black">
+        <div class="container mx-auto">
+          {{navigation}}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</header>

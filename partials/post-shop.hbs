@@ -1,0 +1,62 @@
+<div class="py-6">
+  <div class="container mx-auto">
+    <div class="mb-4 font-anton text-2xl font-black">{{@site.shop_section_title}}</div>
+    <div class="shop-carousel relative">
+      <div class="shop-swiper overflow-hidden lg:-m-5 lg:p-5">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          {{#get "products" limit=@custom.shop_posts_per_page order="published_at desc"}}
+          {{#foreach products}}
+          <div class="swiper-slide">
+            <article class="c-home-product-card relative h-full flex flex-col lg:overflow-hidden lg:rounded">
+              <div class="featured-image mb-3 lg:mb-0 lg:shadow-sm">
+                <div class="aspect-post bg-gray-e5">
+                  <a href="{{url}}" class="flex h-full items-center justify-center">
+                    {{#if feature_image}}
+                    <img
+                      class="object-cover w-full h-full"
+                      src="{{img_url feature_image}}"
+                      alt="{{#if feature_image_alt}}{{ feature_image_alt }}{{ else }}{{ title }}{{/if}}"
+                    >
+                    {{else}}
+                    <img
+                      class="object-cover w-full h-full"
+                      src="{{asset "img/layout/_default_01.png"}}"
+                      alt="{{ title }}"
+                    >
+                    {{/if}}
+                  </a>
+                </div>
+              </div>
+              <div class="grow content flex flex-col lg:p-5">
+                <div class="absolute right-[1px] top-[1px] lg:relative lg:w-fit lg:rounded-sm lg:overflow-hidden lg:mb-2">
+                  {{!-- <div class="text-3xs font-bold py-1 px-3 bg-core-blue text-white">온라인 강좌</div> --}}
+                  {{> product-type component="product"}}
+                </div>
+                <h1 class="grow text-lsm font-bold mb-3 line-clamp-2 break-all hover:underline lg:text-lg"><a class="leading-tight inline-block" href="{{url}}">{{ title }}</a></h1>
+                <div class="text-3xs font-bold flex flex-col gap-y-2 lg:text-sm lg:gap-y-1 xl:max-w-[75%]">
+                  {{> product-price component="product"}}
+                </div>
+              </div>
+            </article>
+          </div>
+          {{/foreach}}
+          {{/get}}
+          <!-- Slides -->
+        </div>
+      </div>
+
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
+
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-10 mr-[3px]"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+      </div>
+      <div class="swiper-button-next text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-10 ml-[3px]"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+      </div>
+
+    </div>
+  </div>
+</div>

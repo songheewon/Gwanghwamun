@@ -1,0 +1,17 @@
+{{#if hero}}
+<div class="text-xs font-bold flex items-center justify-center px-4.5 py-1 border border-black">
+{{else}}
+<div class="c-product-type flex items-center justify-center font-bold text-2xs">
+{{/if}}
+  {{#match option_type "=" "etc"}}
+  기타
+  {{else match option_type "=" "webinar"}}
+  웨비나
+  {{else match option_type "=" "online-class"}}
+  온라인 강좌
+  {{else match option_type "=" "digital-book"}}
+  디지털 북
+  {{else}}
+  기타
+  {{/match}}
+</div>

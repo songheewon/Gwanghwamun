@@ -1,0 +1,47 @@
+<div class="flex flex-col gap-y-1.5">
+  {{#if @member.paid}}
+    {{#if payment.have_price_sale}}
+    <div class="flex items-center justify-between md:text-xs lg:text-gray-b9">
+      <span class="c-product-price__label">유료회원할인가</span>
+      {{#match payment.price "=" null}}
+      <span class="c-product-price__number">무료</span>
+      {{else match payment.price "=" 0}}
+      <span class="c-product-price__number">무료</span>
+      {{else}}
+      <span class="c-product-price__number">{{price option_value.price_sale currency="KRW" currencyFormat="none"}}{{#if option_value.price_sale}}원{{/if}}</span>
+      {{/match}}
+    </div>
+
+    {{else}}
+    <div class="flex items-center justify-between md:text-xs lg:text-gray-b9">
+      {{#if payment.have_price_original}}
+      <span class="c-product-price__number">{{price option_value.price_original currency="KRW" currencyFormat="none"}}원</span>
+      {{else}}
+      <span class="c-product-price__number lg:text-gray-b3">{{price option_value.price currency="KRW" currencyFormat="none"}}원</span>
+      {{/if}}
+    </div>
+    {{/if}}
+  {{else}}
+  <div class="flex items-center justify-between md:text-xs lg:text-gray-b9">
+
+    <span class="c-product-price__label">일반회원가</span>
+    <span class="c-product-price__number lg:text-gray-b3">{{price option_value.price currency="KRW" currencyFormat="none"}}{{#if option_value.price}}원{{/if}}</span>
+
+  </div>
+  <div class="flex items-center justify-between md:text-xs lg:text-gray-b9">
+
+    {{#if option_value.price_sale}}
+    <span class="c-product-price__label">유료회원할인가</span>
+    <span class="c-product-price__number">{{price option_value.price_sale currency="KRW" currencyFormat="none"}}{{#if option_value.price_sale}}원{{/if}}</span>
+    {{else}}
+    {{#match option_value.price_sale "=" 0}}
+    <span class="c-product-price__label">유료회원할인가</span>
+    <span class="c-product-price__number">{{price option_value.price_sale currency="KRW" currencyFormat="none"}}{{#if option_value.price_sale}}원{{/if}}</span>
+    {{else}}
+    <span class="invisible">유료회원할인가</span>
+    {{/match}}
+    {{/if}}
+
+  </div>
+  {{/if}}
+</div>

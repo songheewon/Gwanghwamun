@@ -1,0 +1,123 @@
+{{#get "posts" filter="featured:true" include="tags,authors" limit="5"}}
+<div class="lg:container lg:mx-auto lg:py-10">
+  <div class="grid lg:grid-cols-2">
+    {{#foreach posts}}
+    {{#if @first}}
+    <div class="border-b border-b-black/30 lg:border-b-transparent lg:border-r lg:border-r-black/20 lg:pr-9">
+      <div class="container mx-auto lg:px-0 lg:h-full">
+        <article class="flex flex-col py-7 lg:py-0 lg:h-full">
+          <div class="content grow flex flex-col mb-4">
+            <h1 class="text-2xl font-bold mb-3 line-clamp-3 leading-tight break-all hover:underline"><a class="leading-tight inline-block" href="{{ url }}">{{ title }}</a></h1>
+            <p class="text-sm leading-relaxed mb-4 line-clamp-4 grow">{{ excerpt }}</p>
+            <div class="flex items-center text-xs font-bold gap-x-3 md:gap-x-5">
+
+              {{#primary_tag}}
+              <div class="primary-tag text-core-tag">
+                <a href="{{url}}">{{name}}</a>
+              </div>
+              {{/primary_tag}}
+              {{#primary_author}}
+              <div class="flex items-center gap-x-1">
+                <div class="text-gray-b9 text-sm font-medium font-tinos">by</div>
+                <div class="author">
+                    <a href="{{url}}">{{name}}</a>
+                </div>
+              </div>
+              {{/primary_author}}
+              <div class="text-gray-b9 font-medium">{{date published_at format="YYYY년 M월 D일"}}</div>
+            </div>
+          </div>
+          <div class="featured-image relative">
+            <div class="absolute right-0 top-0">
+              {{> visibility }}
+            </div>
+            <div class="aspect-post bg-gray-e5">
+              <a href="{{ url }}" class="flex h-full items-center justify-center">
+
+                {{#if feature_image}}
+                <img
+                  class="object-cover w-full h-full border border-gray-e6"
+                          style="filter: brightness(0.8);"
+
+                  src="{{img_url feature_image}}"
+                  alt="{{#if feature_image_alt}}{{ feature_image_alt }}{{ else }}{{ title }}{{/if}}"
+                >
+                {{else}}
+                <img
+                  class="object-cover w-full h-full border border-gray-e6"
+                  src="{{asset "img/layout/_default_01.png"}}"
+                  alt="{{ title }}"
+                >
+                {{/if}}
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="container mx-auto lg:px-0 lg:pl-9">
+      <div class="flex flex-col py-7 gap-y-4 md:py-7 md:gap-y-6 lg:py-0">
+    {{else}}
+        <article class="flex gap-x-10 bg-white">
+
+          <div class="content grow flex flex-col">
+            <h1 class="text-lsm font-bold line-clamp-3 grow leading-tight break-all hover:underline md:text-lg"><a class="leading-tight inline-block" href="{{ url }}">{{ title }}</a></h1>
+            <div class="flex items-center text-xs font-bold gap-x-3 md:gap-x-5">
+
+              {{#primary_tag}}
+              <div class="primary-tag text-core-tag">
+                <a href="{{url}}">{{name}}</a>
+              </div>
+              {{/primary_tag}}
+              {{#primary_author}}
+              <div class="flex items-center gap-x-1">
+                <div class="text-gray-b9 text-sm font-medium font-tinos">by</div>
+                <div class="author">
+                    <a href="{{url}}">{{name}}</a>
+                </div>
+              </div>
+              {{/primary_author}}
+              <div class="hidden text-gray-b9 font-medium xl:block">{{date published_at format="YYYY년 M월 D일"}}</div>
+            </div>
+          </div>
+
+          <div class="featured-image relative">
+            <div class="absolute right-0 top-0">
+              {{> visibility }}
+            </div>
+            <div class="aspect-post w-30 bg-gray-e5 md:w-[180px]">
+              <a href="{{ url }}" class="flex h-full items-center justify-center">
+
+                {{#if feature_image}}
+                <img
+                  class="object-cover w-full h-full border border-gray-e6"
+                          style="filter: brightness(0.8);"
+
+                  src="{{img_url feature_image}}"
+                  alt="{{#if feature_image_alt}}{{ feature_image_alt }}{{ else }}{{ title }}{{/if}}"
+                >
+                {{else}}
+                <img
+                  class="object-cover w-full h-full border border-gray-e6"
+                  src="{{asset "img/layout/_default_01.png"}}"
+                  alt="{{ title }}"
+                >
+                {{/if}}
+              </a>
+            </div>
+          </div>
+
+        </article>
+        {{#unless @last}}
+        <div class="border-b border-b-black/20"></div>
+        {{/unless}}
+    {{/if}}
+    {{#if @last}}
+      </div>
+    </div>
+    {{/if}}
+    {{/foreach}}
+  </div>
+</div>
+{{/get}}

@@ -1,0 +1,26 @@
+{{#if isSecondary}}
+  <div class="tc-nav-second flex items-center justify-center gap-x-3 text-lxs tracking-widest mt-3">
+    {{#foreach navigation}}
+    {{#unless @first}}
+    <div class="h-2 border-r border-gray-o9"></div>
+    {{/unless}}
+    <div class="nav-{{slug}}" role="menuitem">
+      <a class="uppercase block leading-none" href="{{ url absolute="true" }}">{{ label }}</a>
+    </div>
+    {{/foreach}}
+  </div>
+{{else}}
+  {{#match whichNav "=" "footerFirst"}}
+    {{> navigation-footer}}
+  {{else match whichNav "=" "footerSecond"}}
+    {{> navigation-footer}}
+  {{else}}
+  <div class="tc-nav flex items-center font-bold text-lsm gap-x-9">
+  {{#foreach navigation}}
+    <div class="item nav-{{slug}}">
+      <{{#if current}}span{{else}}a{{/if}} href="{{ url absolute="true" }}" class="nav-label block py-5{{#if current}} current{{/if}}">{{ label }}</{{#if current}}span{{else}}a{{/if}}>
+    </div>
+  {{/foreach}}
+  </div>
+  {{/match}}
+{{/if}}

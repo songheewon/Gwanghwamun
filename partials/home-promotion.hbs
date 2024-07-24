@@ -1,0 +1,83 @@
+{{#get "pages" filter="tag:hash-home-promotion" limit="1" order="published_at desc"}}
+{{#if pages}}
+  {{#foreach pages}}
+    {{#if feature_image}}
+<div class="c-home-promotion c-home-promotion__md bg-[#f6f6f6] py-10 hidden md:block">
+  <div class="container mx-auto">
+    <div class="flex items-center justify-center">
+      <div class="c-home-promotion__image-wrap w-fit relative">
+        {{#if canonical_url}}
+        <a href="{{ canonical_url }}" class="absolute top-0 left-0 right-0 bottom-0"></a>
+        {{/if}}
+        <img
+          class="block w-fit"
+          src="{{img_url feature_image}}"
+          alt="{{#if feature_image_alt}}{{ feature_image_alt }}{{ else }}{{ title }}{{/if}}"
+        >
+      </div>
+    </div>
+  </div>
+</div>
+    {{/if}}
+
+    {{#if twitter_image}}
+<div class="c-home-promotion c-home-promotion__sm bg-[#f6f6f6] py-10 md:hidden">
+  <div class="container mx-auto">
+    <div class="flex items-center justify-center">
+      <div class="c-home-promotion__image-wrap w-fit relative">
+        {{#if canonical_url}}
+        <a href="{{ canonical_url }}" class="absolute top-0 left-0 right-0 bottom-0"></a>
+        {{/if}}
+        <img
+          class="block w-fit"
+          src="{{img_url twitter_image}}"
+          alt="{{ title }}"
+        >
+      </div>
+    </div>
+  </div>
+</div>
+    {{/if}}
+  {{/foreach}}
+{{else}}
+{{#if @custom.banner_visibility}}
+<div class="bg-[#f6f6f6] py-10">
+  <div class="container mx-auto">
+
+    <div class="bluedot-promotion bg-bluedot-blue px-8 py-6.5 w-[336px] h-[280px] mx-auto md:w-[728px] md:h-[100px] lg:w-[980px] lg:h-[120px] md:flex md:items-center md:justify-center md:gap-x-5 md:px-5 lg:px-15 lg:gap-x-20">
+      <div class="text-black grow flex mb-4 md:mb-0 md:justify-center md:text-center">
+        <svg class="min-w-[118px]" width="118" height="19" viewBox="0 0 118 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9.2881 18.3902L0.623169 18.4125V0.120605H8.72544C12.448 0.120605 16.7287 1.98995 16.9988 4.95681C17.1113 6.71462 15.4998 8.13336 13.7038 8.74011C15.986 9.01226 17.1788 10.7924 16.6116 12.9026C15.7654 16.2086 13.4653 18.4081 9.2881 18.3902ZM8.45986 4.1136H7.37506C7.4568 5.26918 7.4568 6.42902 7.37506 7.5846H8.47787C10.4314 7.55783 11.5117 6.96446 11.5162 5.74202C11.5207 4.51959 10.3549 4.09129 8.45986 4.09575V4.1136ZM9.22508 10.6585L7.10498 10.6987C6.96995 11.8765 6.8169 13.0633 6.69537 14.2678L8.69843 14.2277C10.5259 14.192 11.2912 13.4826 11.5252 12.3003C11.7593 11.1181 10.9356 10.6139 9.22508 10.6407V10.6585Z" fill="black"/>
+          <path d="M18.142 18.3721C17.4398 11.6621 23.0574 6.60285 18.6281 0.575439H24.5608C28.4634 5.15288 25.4611 9.01649 24.2637 13.5493C26.1542 13.5493 28.0313 13.5419 29.8948 13.527C29.4119 15.0957 29.3745 16.7659 29.7868 18.3543L18.142 18.3721Z" fill="black"/>
+          <path d="M39.9059 18.4749C34.779 18.5061 29.6836 15.2404 32.7039 9.5788C34.0048 6.50932 34.9095 3.56923 31.3625 0.125H37.6643C41.5849 3.87261 40.023 6.93762 38.4835 10.1945C37.5833 12.0326 38.1865 13.2863 39.7664 13.2907C41.3463 13.2952 42.6202 12.046 43.561 10.2346C45.1859 6.99562 46.9504 3.93953 43.0703 0.129461H48.922C52.4375 3.77446 50.871 6.70117 49.3046 9.71264C45.8881 15.2314 45.1139 18.5017 39.9059 18.4749Z" fill="black"/>
+          <path d="M51.7165 18.3634C47.1207 11.466 57.8968 7.24106 52.4998 0.633667H63.2083C63.692 1.31035 64.0273 2.08003 64.1924 2.89305C64.3575 3.70607 64.3489 4.54437 64.167 5.35387L59.1031 5.30033C58.9673 6.03025 58.7405 6.74061 58.4279 7.41506L62.5916 7.4686C61.9569 8.86057 61.1062 10.2124 60.5345 11.5999L56.3618 11.5464C56.0579 12.2288 55.8431 12.947 55.7227 13.6834L61.2322 13.7369C61.0882 15.1869 61.4843 16.7127 62.9157 18.3947L51.7165 18.3634Z" fill="black"/>
+          <path d="M72.4679 18.3812H65.608C59.5268 11.5284 70.9735 7.26328 65.9906 0.142822H72.8505C79.2693 0.142822 84.9589 4.06443 81.6955 9.51185C78.6616 15.0083 78.153 18.3277 72.4679 18.3812ZM73.4492 5.40732H72.5759C71.8287 8.20019 69.6906 10.6807 69.425 13.3799H70.3253C72.9225 13.4022 74.5205 11.8095 75.7268 9.44939C77.0007 6.97329 75.8483 5.42071 73.4492 5.40732Z" fill="black"/>
+          <path d="M94.083 18.6845C88.1953 18.6578 79.6429 14.5577 82.6498 9.62333C85.6566 4.68898 88.5914 0.0267687 94.1325 0C100.209 0.0713831 103.95 4.39898 102.505 9.54749C100.893 14.7228 99.3539 18.6265 94.083 18.6845ZM93.7994 5.19758C91.6883 5.19758 89.4962 7.15615 88.4924 9.60102C87.4886 12.0459 89.3386 13.9019 91.6838 13.9197C94.0289 13.9375 95.4829 12.1351 96.2346 9.63671C96.9863 7.13831 96.005 5.1842 93.7994 5.19758Z" fill="black"/>
+          <path d="M113.398 5.12166C113.078 9.60541 112.588 13.9464 113.547 18.4123H107.609C105.359 13.9509 106.61 9.76156 107.348 5.2555L103.702 5.3135C104.051 3.77658 104.214 2.20406 104.188 0.628989L117.206 0.566528V5.02797L113.398 5.12166Z" fill="black"/>
+        </svg>
+        <div class="mt-[2px] ml-4 border-t border-t-black w-full md:hidden"></div>
+      </div>
+
+      <div class="font-noto text-white tracking-tight mb-10 md:mb-0">
+        <div class="text-lg font-bold mb-4 leading-tight flex flex-col md:flex-row md:gap-x-1 md:mb-1">
+          <span>하나의 지식으로</span><span>4가지 수익을 창출하세요</span>
+        </div>
+        <div class="text-xs flex flex-col leading-normal md:gap-x-1 md:block lg:flex lg:flex-col">
+          <span>크리에이터의 독립과 소유권을 보장하고 수익 확장을 돕는 수익다각화 플랫폼 빌더 블루닷.</span><span class="font-black md:ml-1 lg:ml-0">번아웃 되지 마세요!</span>
+        </div>
+      </div>
+      <div>
+        <a class="bg-[#00CEFF] text-xs font-bold rounded-full w-40 h-10 flex items-center justify-center relative" href="https://bluedot.so/apply">
+          <svg class="absolute left-2" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 25C19.4036 25 25 19.4036 25 12.5C25 5.59644 19.4036 0 12.5 0C5.59644 0 0 5.59644 0 12.5C0 19.4036 5.59644 25 12.5 25Z" fill="white"/>
+            <path d="M13.8935 18.9273H7.9834C6.09173 14.74 9.87508 10.5548 7.9834 6.36749H13.4661C16.0759 6.36749 18.5426 7.62434 18.3502 9.74045C18.239 10.9951 17.1596 12.0105 15.999 12.423C17.4161 12.6367 18.1536 13.9192 17.9954 15.3663C17.741 17.6192 16.73 18.9273 13.8935 18.9273ZM13.0963 9.17187H12.455C12.4284 9.96307 12.3289 10.7501 12.1579 11.5231H12.7992C13.9299 11.5231 14.6139 11.1277 14.7229 10.3005C14.8319 9.47326 14.1821 9.17187 13.0877 9.17187H13.0963ZM12.9402 13.7824H11.6577C11.4884 14.5521 11.389 15.3354 11.3606 16.123H12.6431C13.8145 16.123 14.2377 15.6762 14.3531 14.9003C14.4685 14.1244 13.9662 13.7824 12.9317 13.7824H12.9402Z" fill="#3C72FF"/>
+          </svg>
+          <span class="ml-4">7일 체험판 시작</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{{/if}}
+{{/if}}
+{{/get}}

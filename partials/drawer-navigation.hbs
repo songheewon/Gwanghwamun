@@ -1,0 +1,9 @@
+<ul class="font-bold drawer__ul">
+  {{#foreach @site.navigation as |items|}}
+  <li class="mb-6 nav-{{slug}}{{#if current}} nav-current{{/if}} drawer__nav--container">
+    <div class="text-base">
+      <a class="capitalize drawer__nav" href="{{items.url}}">{{label}}</a>
+    </div>
+  </li>
+  {{/foreach}}
+</ul>

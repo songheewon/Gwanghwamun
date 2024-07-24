@@ -1,0 +1,25 @@
+routes:
+  /membership/: members/membership
+  /signup/: members/signup
+  /signin/: members/signin
+  /shop/my-purchases/: shop/my-purchases
+  /shop/online-class/: shop/online-class
+  /shop/webinar/: shop/webinar
+  /shop/digital-book/: shop/digital-book
+  /shop/etc/: shop/etc
+
+  # Routes for my purchases
+  /my-purchases/: routes/my-purchases/index
+  /my-purchases/online-class/: routes/my-purchases/online-class
+  /my-purchases/webinar/: routes/my-purchases/webinar
+  /my-purchases/digital-book/: routes/my-purchases/digital-book
+  /my-purchases/etc/: routes/my-purchases/etc
+
+collections:
+  /:
+    permalink: /{slug}/
+    template: index
+
+taxonomies:
+  tag: /tag/{slug}/
+  author: /author/{slug}/

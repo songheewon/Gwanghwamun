@@ -1,0 +1,13 @@
+@layer base {
+  html {
+    @apply antialiased font-spoqa /* font-medium */;
+  }
+
+  .keep-all {
+    word-break: keep-all;
+  }
+
+  .word-break {
+    word-break: break-word;
+  }
+}

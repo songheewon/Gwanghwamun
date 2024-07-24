@@ -1,0 +1,202 @@
+{{!< default}}
+
+
+{{#tag}}
+
+  {{#get "posts" filter="tag:{{slug}}+featured:true" include="tags,authors" limit="1"}}
+
+    {{#match posts.length "=" 1}}
+<header class="hero bg-black text-white py-10">
+  <div class="container mx-auto max-w-[940px]">
+    <div class="hero-wrap">
+    {{#foreach posts}}
+      <div class="tags head-tags font-bold text-sm text-core-blue mb-4 md:hidden">{{tags separator="" limit="1"}}</div>
+
+      <article class="md:flex md:gap-x-14">
+        <div class="relative featured-image mb-4 md:w-[420px] shrink-0 md:mb-0">
+          <div class="aspect-post bg-gray-e5 overflow-hidden">
+            <a href="{{ url }}" class="flex w-full h-full items-center justify-center">
+              {{#if feature_image}}
+              <img
+                class="object-cover w-full h-full border border-gray-e6"
+                src="{{img_url feature_image}}"
+                alt="{{#if feature_image_alt}}{{ feature_image_alt }}{{ else }}{{ title }}{{/if}}"
+              >
+              {{else}}
+              <img
+                    class="object-cover w-full h-full border border-gray-e6"
+                    src="{{asset "img/layout/_default_02.png"}}"
+                    alt="{{ title }}"
+                  >
+              {{/if}}
+            </a>
+          </div>
+        </div>
+        <div class="content md:flex md:flex-col">
+          <div class="invisible md:visible md:mb-2">
+            {{#primary_tag}}
+            <div class="primary-tag text-core-blue font-bold text-sm">
+              <a href="{{url}}">{{name}}</a>
+            </div>
+            {{/primary_tag}}
+          </div>
+          <h1 class="text-2xl font-bold mb-3 line-clamp-3 leading-tight break-all hover:underline"><a class="leading-tight inline-block" href="{{ url }}">{{ title }}</a></h1>
+          <div class="grow">
+            <p class="text-sm leading-relaxed mb-4 line-clamp-5">{{ excerpt }}</p>
+          </div>
+          <div class="flex items-center text-xs font-bold gap-x-3 md:gap-x-5">
+            {{#primary_author}}
+            <div class="flex items-center gap-x-1">
+              <div class="text-gray-b9 text-sm font-medium font-tinos">by</div>
+              <div class="author">
+                  <a href="{{url}}">{{name}}</a>
+              </div>
+            </div>
+            {{/primary_author}}
+            <div class="text-gray-b9 font-medium">{{date published_at format="YYYY년 M월 D일"}}</div>
+          </div>
+        </div>
+      </article>
+
+
+    {{/foreach}}
+    </div>
+  </div>
+</header>
+    {{/match}}
+  {{/get}}
+
+<div class="container mx-auto py-11 max-w-[940px]">
+  <div class="featured-posts">
+    <div class="tag-name font-bold text-[2rem] mb-4">{{name}}</div>
+    {{#get "posts" filter="tag:{{slug}}+featured:true" include="tags,authors" limit="7"}}
+      <div class="grid grid-cols-2 gap-x-3.5 gap-y-7.5 lg:grid-cols-3 lg:gap-x-8">
+      {{#foreach posts}}
+        {{#unless @first}}
+        <article class="flex flex-col">
+          <div class="relative featured-image mb-2 lg:mb-4">
+            <div class="absolute right-0 top-0">
+              {{> visibility }}
+            </div>
+            <div class="aspect-post bg-gray-e5 overflow-hidden">
+              <a href="{{ url }}" class="flex w-full h-full items-center justify-center">
+                {{#if feature_image}}
+                <img
+                  class="object-cover w-full h-full border border-gray-e6"
+                  src="{{img_url feature_image}}"
+                  alt="{{#if feature_image_alt}}{{ feature_image_alt }}{{ else }}{{ title }}{{/if}}"
+                >
+                {{else}}
+                <img
+                    class="object-cover w-full h-full border border-gray-e6"
+                    src="{{asset "img/layout/_default_03.png"}}"
+                    alt="{{ title }}"
+                  >
+                {{/if}}
+              </a>
+            </div>
+          </div>
+          <div class="grow flex flex-col">
+            <div class="font-bold text-xs mb-1 lg:hidden">
+              {{#primary_tag}}
+              <div class="primary-tag text-core-tag">
+                <a href="{{url}}">{{name}}</a>
+              </div>
+              {{/primary_tag}}
+            </div>
+            <h1 class="grow text-lsm font-bold line-clamp-3 leading-tight break-all hover:underline lg:text-lg lg:mb-4"><a class="leading-tight inline-block" href="{{ url }}">{{ title }}</a></h1>
+            <div class="hidden lg:flex items-center text-xs font-bold gap-x-3 md:gap-x-5">
+              {{#primary_tag}}
+              <div class="primary-tag text-core-tag">
+                <a href="{{url}}">{{name}}</a>
+              </div>
+              {{/primary_tag}}
+              {{#primary_author}}
+              <div class="flex items-center gap-x-1">
+                <div class="text-gray-b9 text-sm font-medium font-tinos">by</div>
+                <div class="author">
+                    <a href="{{url}}">{{name}}</a>
+                </div>
+              </div>
+              {{/primary_author}}
+              <div class="text-gray-b9 font-medium">{{date published_at format="YYYY년 M월 D일"}}</div>
+            </div>
+          </div>
+        </article>
+        {{/unless}}
+      {{/foreach}}
+      </div>
+    {{/get}}
+  </div>
+</div>
+
+{{/tag}}
+
+<div class="lg:container lg:mx-auto lg:max-w-[940px]">
+  <div class="divider border-b border-b-black lg:border-b-gray-e0"></div>
+</div>
+
+<div class="posts">
+  <div class="container mx-auto max-w-[940px]">
+    <div class="posts-wrapper flex flex-col py-7 md:py-7 lg:py-0">
+  {{#foreach posts}}
+      <article class="post-article py-5 flex gap-x-10 bg-white border-b border-black/20 md:py-6">
+
+        <div class="content grow flex flex-col">
+          <h1 class="text-lsm font-bold line-clamp-3 grow leading-tight break-all hover:underline md:text-lg"><a class="leading-tight inline-block" href="{{ url }}">{{ title }}</a></h1>
+          <div class="hidden grow md:block">
+            <p class="text-sm break-all leading-tight mb-4 line-clamp-2 lg:line-clamp-3">{{ excerpt }}</p>
+          </div>
+          <div class="flex items-center text-xs font-bold gap-x-3 md:gap-x-5">
+            {{#primary_tag}}
+            <div class="primary-tag text-core-tag">
+              <a href="{{url}}">{{name}}</a>
+            </div>
+            {{/primary_tag}}
+            {{#primary_author}}
+            <div class="flex items-center gap-x-1">
+              <div class="text-gray-b9 text-sm font-medium font-tinos">by</div>
+              <div class="author">
+                  <a href="{{url}}">{{name}}</a>
+              </div>
+            </div>
+            {{/primary_author}}
+            <div class="hidden text-gray-b9 font-medium xl:block">{{date published_at format="YYYY년 M월 D일"}}</div>
+          </div>
+        </div>
+
+        <div class="featured-image relative">
+          <div class="absolute right-0 top-0">
+            {{> visibility }}
+          </div>
+          <div class="aspect-post w-30 bg-gray-e5 md:w-[180px]">
+            <a href="{{ url }}" class="flex h-full items-center justify-center">
+
+              {{#if feature_image}}
+              <img
+                class="object-cover w-full h-full border border-gray-e6"
+                src="{{img_url feature_image}}"
+                alt="{{#if feature_image_alt}}{{ feature_image_alt }}{{ else }}{{ title }}{{/if}}"
+              >
+              {{else}}
+              <img
+                    class="object-cover w-full h-full border border-gray-e6"
+                    src="{{asset "img/layout/_default_01.png"}}"
+                    alt="{{ title }}"
+                  >
+              {{/if}}
+            </a>
+          </div>
+        </div>
+
+      </article>
+  {{/foreach}}
+    </div>
+  </div>
+</div>
+
+<div class="container mx-auto py-16">
+  <div class="flex items-center justify-center">
+    <button class="hidden bg-black text-white w-[300px] h-[60px] rounded-full items-center justify-center js-load-posts disabled:opacity-50 disabled:cursor-not-allowed">{{t 'More Posts' }}</button>
+  </div>
+</div>

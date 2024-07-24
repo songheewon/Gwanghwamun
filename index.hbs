@@ -1,0 +1,549 @@
+{{!< default}}
+
+{{#if @custom.button_color}}{{/if}}
+
+{{#if @custom.notice_section}}
+{{#get "pages" filter="slug:notice" limit="1" order="published_at desc"}}
+  {{#foreach pages}}
+<div class="border-y border-y-black mt-[3px] py-4">
+  <div class="container mx-auto">
+    <div class="text-sm font-bold flex items-center justify-center tracking-tight gap-3">
+      <div class="rounded-full w-4 h-4 bg-core-blue"></div>
+      <a class="hover:underline" href="{{url}}">{{title}}</a>
+    </div>
+  </div>
+</div>
+{{/foreach}}
+{{/get}}
+{{/if}}
+
+<div class="featured-posts">
+  {{> featured-posts }}
+</div>
+
+<div class="container mx-auto">
+  <div class="h-[7px]" style="background: url('/assets/img/layout/line.png') center"></div>
+</div>
+
+<div class="container mx-auto">
+  <div class="w-fit mx-auto py-12 lg:flex lg:items-center lg:justify-center lg:gap-16">
+    <div class="flex items-center gap-x-5 mb-10 lg:mb-0">
+      <div class="flex items-center">
+        {{#if @custom.newsletter_form_icon }}
+        <div class="flex items-center justify-center aspect-square w-[52px]">
+          <img class="object-cover w-full h-full" src="{{ @custom.newsletter_form_icon }}" alt="뉴스레터 폼 아이콘">
+        </div>
+        {{ else }}
+        <svg width="52" height="53" viewBox="0 0 52 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M30.0893 14.4926C29.6639 12.0186 27.8346 11.644 26.8519 11.644C26.3882 11.644 25.1163 11.7308 24.2208 12.7953C22.9446 14.2619 22.9446 16.7951 22.9446 17.1401C22.9446 20.1326 24.1591 21.7431 25.4034 22.2891C25.8659 22.4618 26.3559 22.5499 26.8498 22.5494C28.3813 22.5494 29.1343 21.7028 29.4512 21.2267C29.7804 20.6282 29.9966 19.9747 30.0893 19.2987H36.279C36.2896 19.6746 36.2604 20.0506 36.1918 20.4204C35.9748 21.7044 35.4711 22.9237 34.7177 23.9885C33.6542 25.5694 31.4208 27.8148 26.7945 27.8148C22.8893 27.8148 20.7495 26.0879 19.6221 24.9366C16.8166 22.0605 16.6443 18.376 16.6443 17.0829C16.6443 15.7899 16.8166 12.6217 19.2457 9.8028C20.4028 8.48011 22.6872 6.46537 26.9966 6.46537C28.0047 6.45974 29.0082 6.60237 29.9744 6.88863C32.9523 7.83886 35.4111 10.2536 36.0471 13.3624C36.1343 13.8513 36.1343 13.9973 36.1918 14.4841L30.0893 14.4926Z" fill="black"/>
+          <path d="M26.4946 52C18.5849 52 10.6744 52 2.76324 52C2.37785 52.0125 1.99404 51.9454 1.63591 51.8032C1.18498 51.5916 1.01056 51.1683 1.01269 50.6668C1.01269 49.6975 1.01269 48.7282 1.01269 47.7611C1.01269 39.5907 1.00773 31.4203 0.997803 23.2499C0.997803 22.4034 1.31048 21.8912 2.06132 21.5103C4.12668 20.4712 6.16012 19.3664 8.21697 18.3104C8.36054 18.2532 8.48142 18.1509 8.56127 18.0192C8.64112 17.8874 8.67557 17.7333 8.65939 17.5803C8.64451 14.3762 8.65939 4.821 8.65939 1.6169C8.65939 0.452923 9.0848 0.0106201 10.2483 0.0106201H42.7431C43.8938 0.0106201 44.3447 0.465621 44.3447 1.6169C44.3447 4.821 44.3447 14.3741 44.3447 17.5803C44.3256 17.7312 44.3569 17.8843 44.4338 18.0158C44.5107 18.1473 44.6288 18.2501 44.7701 18.3083C46.8738 19.3897 48.9583 20.5092 51.064 21.5865C51.7277 21.9272 51.9978 22.4139 51.9978 23.1483C51.9879 32.2174 51.9879 41.2851 51.9978 50.3514C51.9978 51.5725 51.5724 52.0064 50.3408 52.0085L26.4946 52ZM3.59704 24.9599V49.416H49.3943V24.9683L48.5435 25.4106C41.5214 29.0874 34.5022 32.7663 27.4858 36.4472C27.1851 36.6269 26.8407 36.7209 26.4899 36.7191C26.1392 36.7172 25.7957 36.6195 25.497 36.4366C19.2832 33.1564 13.0617 29.893 6.83227 26.6466C5.77088 26.0921 4.70949 25.5419 3.59704 24.9599ZM11.2544 2.57559C11.2416 2.72162 11.2246 2.84015 11.2246 2.96078C11.2246 8.41876 11.2246 20.2236 11.2246 25.6815C11.2246 26.035 11.3905 26.1619 11.65 26.3016C16.4415 28.8101 21.2366 31.3265 26.0352 33.8505C26.1732 33.9365 26.3328 33.9821 26.4957 33.9821C26.6585 33.9821 26.8181 33.9365 26.9562 33.8505C31.7335 31.3321 36.5179 28.8257 41.3094 26.3312C41.469 26.2716 41.6044 26.1614 41.6947 26.0175C41.7851 25.8737 41.8253 25.7043 41.8093 25.5355C41.7944 20.1833 41.8093 8.48223 41.8093 3.13219V2.57559H11.2544ZM8.62749 24.7123V20.9643L5.0413 22.8478L8.62749 24.7123ZM44.383 24.7123L47.9819 22.8288L44.3724 20.9643L44.383 24.7123Z" fill="black"/>
+        </svg>
+        {{/if}}
+      </div>
+      <div>
+        <div class="font-bold text-xl mb-2">{{#if @custom.newsletter_form_title }}{{ @custom.newsletter_form_title }}{{ else }}뉴스레터{{/if}}</div>
+        <div class="font-medium text-sm">{{#if @custom.newsletter_form_description }}{{ @custom.newsletter_form_description }}{{ else }}지금 뉴스레터를 구독하세요.{{/if}}</div>
+      </div>
+    </div>
+
+    <form data-members-form="subscribe">
+      <div class="md:flex md:items-center md:gap-x-4">
+        <label for="homepage-newsletter-form" class="sr-only">Email address</label>
+        <input type="email" name="email" class="text-sm mb-4 border border-gray-b9 rounded-sm w-full sm:w-[350px] h-[45px] px-4 md:mb-0" id="homepage-newsletter-form" placeholder="메일주소를 입력하세요." required="" data-members-email="">
+        <button type="submit" value="Subscribe" class="bg-black text-white text-sm font-bold rounded-md w-40 h-[45px]">{{#if @custom.newsletter_form_button_text }}{{ @custom.newsletter_form_button_text }}{{ else }}무료 뉴스레터 구독{{/if}}</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="lg:container lg:mx-auto">
+  <div class="border-t border-t-black"></div>
+</div>
+
+{{#if @site.home_visible_shop_section}}
+<div class="py-6">
+  <div class="container mx-auto">
+    <div class="mb-4 font-anton text-2xl font-black">{{@site.shop_section_title}}</div>
+    <div class="shop-carousel relative">
+      <div class="shop-swiper overflow-hidden lg:-m-5 lg:p-5">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          {{#get "products" limit=@custom.shop_posts_per_page order="published_at desc"}}
+          {{#foreach products}}
+          <div class="swiper-slide">
+            <article class="c-home-product-card relative h-full flex flex-col lg:overflow-hidden lg:rounded">
+              <div class="featured-image mb-3 lg:mb-0 lg:shadow-sm">
+                <div class="aspect-post bg-gray-e5">
+                  <a href="{{url}}" class="flex h-full items-center justify-center">
+                    {{#if feature_image}}
+                    <img
+                      class="object-cover w-full h-full"
+                      src="{{img_url feature_image}}"
+                      alt="{{#if feature_image_alt}}{{ feature_image_alt }}{{ else }}{{ title }}{{/if}}"
+                    >
+                    {{else}}
+                    <img
+                      class="object-cover w-full h-full"
+                      src="{{asset "img/layout/_default_01.png"}}"
+                      alt="{{ title }}"
+                    >
+                    {{/if}}
+                  </a>
+                </div>
+              </div>
+              <div class="grow content flex flex-col lg:p-5">
+                <div class="absolute right-[1px] top-[1px] lg:relative lg:w-fit lg:rounded-sm lg:overflow-hidden lg:mb-2">
+                  {{!-- <div class="text-3xs font-bold py-1 px-3 bg-core-blue text-white">온라인 강좌</div> --}}
+                  {{> product-type component="product"}}
+                </div>
+                <h1 class="grow text-lsm font-bold mb-3 line-clamp-2 break-all hover:underline lg:text-lg"><a class="leading-tight inline-block" href="{{url}}">{{ title }}</a></h1>
+                <div class="text-3xs font-bold flex flex-col gap-y-2 lg:text-sm lg:gap-y-1 xl:max-w-[75%]">
+                  {{> product-price component="product"}}
+                </div>
+              </div>
+            </article>
+          </div>
+          {{/foreach}}
+          {{/get}}
+          <!-- Slides -->
+        </div>
+      </div>
+
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
+
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-10 mr-[3px]"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+      </div>
+      <div class="swiper-button-next text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-10 ml-[3px]"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+      </div>
+
+    </div>
+  </div>
+</div>
+{{/if}}
+
+
+{{#if @custom.tag_slugs_for_home_sections}}
+{{#get "tags" filter="slug:[{{@custom.tag_slugs_for_home_sections}}]"}}
+{{#if tags}}
+
+<div class="lg:container lg:mx-auto">
+  <div class="border-t border-t-black"></div>
+</div>
+
+<div class="container mx-auto">
+  <div class="tag-carousel relative py-10">
+    <div class="tag-swiper overflow-hidden">
+      <div class="swiper-wrapper">
+
+
+{{#foreach tags}}
+        <div class="swiper-slide">
+
+
+
+          <div class="">
+            <div>
+              <div class="flex items-end justify-between mb-5">
+                <div class="flex items-center gap-x-2">
+                  <div>
+                    <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 18.5L10.5 10L19 1.50002" stroke="#00CEFF" stroke-width="3"/>
+                    </svg>
+                  </div>
+                  <div class="font-anton text-2xl font-black">{{ name }}</div>
+                </div>
+                <a href="{{ url }}" class="font-bold text-sm">더보기 <span>></span></a>
+              </div>
+              <div class="flex flex-col gap-y-5">
+{{#get "posts" filter="tags:{{slug}}" include="tags,authors" limit="4" order="published_at desc" as |posts|}}
+  {{#if posts}}
+              {{#foreach posts}}
+                <article class="tracking-tight flex items-stretch gap-x-10  bg-white">
+                  <div class="content flex flex-col flex-auto">
+                    <div class="flex grow">
+                      <h1 class="text-lsm font-bold md:text-lg"><a class="inline-block line-clamp-3 leading-tight" href="{{ url }}">{{ title }}</a></h1>
+                    </div>
+
+                    <div class="flex items-center text-xs font-bold gap-x-3 md:gap-x-5">
+                      {{#primary_tag}}
+                      <div class="primary-tag text-core-tag">
+                        <a href="{{url}}">{{name}}</a>
+                      </div>
+                      {{/primary_tag}}
+                      {{#primary_author}}
+                      <div class="flex items-center gap-x-1">
+                        <div class="text-gray-b9 text-sm font-medium font-tinos">by</div>
+                        <div class="author">
+                            <a href="{{url}}">{{name}}</a>
+                        </div>
+                      </div>
+                      {{/primary_author}}
+                      <div class="hidden text-gray-b9 font-medium md:block lg:hidden xl:block">{{date published_at format="YYYY년 M월 D일"}}</div>
+                    </div>
+
+                  </div>
+
+                  <div class="relative feature-image media w-[120px] md:w-[180px] aspect-post flex-grow-0 flex-shrink-0 bg-gray-100 flex">
+                    <div class="absolute right-0 top-0">
+                      {{> visibility }}
+                    </div>
+                    <a href="{{ url }}" class="flex w-full h-full items-center justify-center">
+
+                        {{#if feature_image}}
+                        <img
+                          class="object-cover w-full h-full border border-gray-e6"
+                          style="filter: brightness(0.8);"
+                          src="{{img_url feature_image}}"
+                          alt="{{#if feature_image_alt}}{{ feature_image_alt }}{{ else }}{{ title }}{{/if}}"
+                        >
+                        {{else}}
+                        <img
+                          class="object-cover w-full h-full border border-gray-e6"
+                          src="{{asset "img/layout/_default_02.png"}}"
+                          alt="{{ title }}"
+                        >
+                        {{/if}}
+                      </a>
+                  </div>
+                </article>
+                {{#unless @last}}
+                <div class="border-b border-b-black/20"></div>
+                {{/unless}}
+              {{/foreach}}
+                {{/if}}
+  {{/get}}
+              </div>
+            </div>
+
+          </div>
+
+
+
+
+        </div>
+{{/foreach}}
+
+
+      </div>
+    </div>
+
+    <div class="flex items-center justify-center gap-x-4 mt-10">
+      <div class="swiper-button-prev text-white border border-gray-c4 rounded">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-10 mr-[3px]"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+      </div>
+      <div class="swiper-pagination font-medium text-lsm text-gray-b3"></div>
+      <div class="swiper-button-next text-white border border-gray-c4 rounded">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-10 ml-[3px]"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{/if}}
+{{/get}}
+{{/if}}
+
+
+
+
+{{> home-promotion }}
+
+
+
+
+<div class="loop py-5">
+
+{{#get "posts" include="tags,authors" filter="featured:false" order="published_at desc" limit="8"}}
+{{#foreach posts}}
+  {{#if @first}}
+  <div class="container mx-auto py-8">
+    <div class="grid gap-y-5 lg:grid-cols-2 lg:gap-x-5">
+  {{/if}}
+
+  {{#match @number "=" 3}}
+    </div>
+  </div>
+
+  <div class="lg:container lg:mx-auto">
+    <div class="border-t border-t-black"></div>
+  </div>
+
+  <div class="container mx-auto">
+    <div data-row="2" class="lg:grid lg:grid-cols-2 lg:py-10 lg:border-b lg:border-b-black/20">
+  {{/match}}
+
+  {{#match @number "=" 5}}
+    </div>
+  </div>
+  <div class="container mx-auto lg:py-6">
+    <div data-row="3" class="lg:grid lg:grid-cols-4 lg:gap-x-7">
+  {{/match}}
+
+  {{#match @number "=" 1}}
+      <div>
+        <article>
+          <div class="relative aspect-square flex bg-gray-e5">
+            <div class="h-full w-full">
+              {{#if feature_image}}
+              <img
+                class="object-cover w-full h-full border border-gray-e6"
+                          style="filter: brightness(0.8);"
+                src="{{img_url feature_image}}"
+                alt="{{#if feature_image_alt}}{{ feature_image_alt }}{{ else }}{{ title }}{{/if}}"
+              >
+              {{else}}
+              <div class="h-full w-full flex items-center justify-center">
+                <span class="text-xs font-bold text-white/40">{{ @site.brand_site_title }}</span>
+              </div>
+              {{/if}}
+            </div>
+
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-5a"></div>
+            <a class="absolute inset-0" href="{{url}}"></a>
+            <div class="absolute inset-x-0 bottom-0">
+              <div class="px-6 pb-5 text-white lg:px-10 lg:pb-10">
+                <h1 class="font-bold text-[22px] leading-tight tracking-tight mb-5 md:text-[28px]"><a href="{{ url }}">{{ title }}</a></h1>
+                <div class="flex items-center text-xs font-bold gap-x-3 md:gap-x-5">
+                  {{#primary_tag}}
+                  <div class="primary-tag text-core-tag">
+                    <a href="{{url}}">{{name}}</a>
+                  </div>
+                  {{/primary_tag}}
+                  {{#primary_author}}
+                  <div class="flex items-center gap-x-1">
+                    <div class="text-gray-b9 text-sm font-medium font-tinos">by</div>
+                    <div class="author">
+                        <a href="{{url}}">{{name}}</a>
+                    </div>
+                  </div>
+                  {{/primary_author}}
+                  <div class="text-gray-b9 font-medium">{{date published_at format="YYYY년 M월 D일"}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+  {{else match @number "=" 2}}
+      <div>
+        <article>
+          <div class="relative aspect-square flex bg-gray-e5">
+            <div class="h-full w-full">
+              {{#if feature_image}}
+              <img
+                class="object-cover w-full h-full border border-gray-e6"
+                          style="filter: brightness(0.8);"
+
+                src="{{img_url feature_image}}"
+                alt="{{#if feature_image_alt}}{{ feature_image_alt }}{{ else }}{{ title }}{{/if}}"
+              >
+              {{else}}
+              <div class="h-full w-full flex items-center justify-center">
+                <span class="text-xs font-bold text-white/40">{{ @site.brand_site_title }}</span>
+              </div>
+              {{/if}}
+            </div>
+
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-5a"></div>
+            <a class="absolute inset-0" href="{{url}}"></a>
+            <div class="absolute inset-x-0 bottom-0">
+              <div class="px-6 pb-5 text-white lg:px-10 lg:pb-10">
+                <h1 class="font-bold text-[22px] leading-tight tracking-tight mb-5 md:text-[28px]"><a href="{{ url }}">{{ title }}</a></h1>
+                <div class="flex items-center text-xs font-bold gap-x-3 md:gap-x-5">
+                  {{#primary_tag}}
+                  <div class="primary-tag text-core-tag">
+                    <a href="{{url}}">{{name}}</a>
+                  </div>
+                  {{/primary_tag}}
+                  {{#primary_author}}
+                  <div class="flex items-center gap-x-1">
+                    <div class="text-gray-b9 text-sm font-medium font-tinos">by</div>
+                    <div class="author">
+                        <a href="{{url}}">{{name}}</a>
+                    </div>
+                  </div>
+                  {{/primary_author}}
+                  <div class="text-gray-b9 font-medium">{{date published_at format="YYYY년 M월 D일"}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+  {{else match @number "=" 3}}
+  <div class="py-4 border-b border-b-black/20 lg:py-0 lg:border-b-0 {{#match @number "=" 3}}lg:pr-9 lg:border-r lg:border-r-black/20{{else}}lg:pl-9{{/match}}">
+          <article class="tracking-tight flex items-stretch gap-x-10  bg-white lg:h-full">
+            <div class="content flex flex-col flex-auto">
+              <div class="flex flex-col grow">
+                <h1 class="text-lsm font-bold lg:text-lg lg:mb-3 leading-tight"><a href="{{ url }}">{{ title }}</a></h1>
+                <div class="hidden lg:block">
+                  <p class="text-sm leading-tight mb-4 line-clamp-3 grow">{{ excerpt }}</p>
+                </div>
+              </div>
+
+              <div class="flex items-center text-xs font-bold gap-x-3 md:gap-x-5">
+                {{#primary_tag}}
+                <div class="primary-tag text-core-tag">
+                  <a href="{{url}}">{{name}}</a>
+                </div>
+                {{/primary_tag}}
+                {{#primary_author}}
+                <div class="flex items-center gap-x-1">
+                  <div class="text-gray-b9 text-sm font-medium font-tinos">by</div>
+                  <div class="author">
+                      <a href="{{url}}">{{name}}</a>
+                  </div>
+                </div>
+                {{/primary_author}}
+                <div class="hidden text-gray-b9 font-medium md:block lg:hidden xl:block">{{date published_at format="YYYY년 M월 D일"}}</div>
+              </div>
+
+            </div>
+
+            <div class="relative feature-image media w-[120px] md:w-[180px] aspect-post flex-grow-0 flex-shrink-0 bg-gray-100 flex">
+              <div class="absolute right-0 top-0">
+                {{> visibility }}
+              </div>
+              <a href="{{ url }}" class="flex h-full items-center justify-center">
+
+                {{#if feature_image}}
+                <img
+                  class="object-cover w-full h-full border border-gray-e6"
+                          style="filter: brightness(0.8);"
+                  src="{{img_url feature_image}}"
+                  alt="{{#if feature_image_alt}}{{ feature_image_alt }}{{ else }}{{ title }}{{/if}}"
+                >
+                {{else}}
+                <span class="text-xs font-bold text-gray-500">{{ @site.brand_site_title }}</span>
+                {{/if}}
+              </a>
+            </div>
+          </article>
+        </div>
+  {{else match @number "=" 4}}
+  <div class="py-4 border-b border-b-black/20 lg:py-0 lg:border-b-0 {{#match @number "=" 3}}lg:pr-9 lg:border-r lg:border-r-black/20{{else}}lg:pl-9{{/match}}">
+          <article class="tracking-tight flex items-stretch gap-x-10  bg-white">
+            <div class="content flex flex-col flex-auto">
+              <div class="flex flex-col grow">
+                <h1 class="text-lsm font-bold lg:text-lg lg:mb-3 leading-tight"><a href="{{ url }}">{{ title }}</a></h1>
+                <div class="hidden lg:block">
+                  <p class="text-sm leading-tight mb-4 line-clamp-3 grow">{{ excerpt }}</p>
+                </div>
+              </div>
+
+              <div class="flex items-center text-xs font-bold gap-x-3 md:gap-x-5">
+                {{#primary_tag}}
+                <div class="primary-tag text-core-tag">
+                  <a href="{{url}}">{{name}}</a>
+                </div>
+                {{/primary_tag}}
+                {{#primary_author}}
+                <div class="flex items-center gap-x-1">
+                  <div class="text-gray-b9 text-sm font-medium font-tinos">by</div>
+                  <div class="author">
+                      <a href="{{url}}">{{name}}</a>
+                  </div>
+                </div>
+                {{/primary_author}}
+                <div class="hidden text-gray-b9 font-medium md:block lg:hidden xl:block">{{date published_at format="YYYY년 M월 D일"}}</div>
+              </div>
+
+            </div>
+
+            <div class="relative feature-image media w-[120px] md:w-[180px] aspect-post flex-grow-0 flex-shrink-0 bg-gray-100 flex">
+              <div class="absolute right-0 top-0">
+                {{> visibility }}
+              </div>
+              {{#if feature_image}}
+                <a href="{{ url }}" class="flex">
+                  <img class="object-cover w-full h-full border border-gray-e6"
+                      srcset="{{img_url feature_image size="s"}} 300w,
+                              {{img_url feature_image size="m"}} 600w,
+                              {{img_url feature_image size="l"}} 1000w,
+                              {{img_url feature_image size="xl"}} 2000w"
+                      sizes="(max-width: 1000px) 400px, 700px"
+                          style="filter: brightness(0.8);"
+
+                      src="{{img_url feature_image size="m"}}"
+                      alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                  />
+                </a>
+              {{/if}}
+            </div>
+          </article>
+        </div>
+  {{else}}
+    <div class="py-4 border-b border-b-black/20 lg:py-0 lg:border-b-0">
+
+        <article class="tracking-tight flex gap-x-10  bg-white lg:flex-col-reverse lg:h-full">
+
+
+          <div class="content grow flex flex-col">
+            <div class="flex flex-col grow">
+              <h1 class="text-lsm font-bold line-clamp-2 lg:text-lg lg:mb-3 leading-tight"><a href="{{ url }}">{{ title }}</a></h1>
+              <div class="hidden">
+                <p class="text-sm leading-tight mb-4 line-clamp-3 grow">{{ excerpt }}</p>
+              </div>
+            </div>
+
+            <div class="flex items-center text-xs font-bold gap-x-3 md:gap-x-5">
+              {{#primary_tag}}
+              <div class="primary-tag text-core-tag">
+                <a href="{{url}}">{{name}}</a>
+              </div>
+              {{/primary_tag}}
+              {{#primary_author}}
+              <div class="flex items-center gap-x-1">
+                <div class="text-gray-b9 text-sm font-medium font-tinos">by</div>
+                <div class="author">
+                    <a href="{{url}}">{{name}}</a>
+                </div>
+              </div>
+              {{/primary_author}}
+              <div class="hidden text-gray-b9 font-medium md:block lg:hidden xl:block">{{date published_at format="YYYY년 M월 D일"}}</div>
+            </div>
+
+          </div>
+
+          <div class="relative feature-image shrink-0 media w-[120px] md:w-[180px] lg:min-w-[180px] lg:w-auto aspect-post bg-gray-100 lg:mb-4 overflow-hidden">
+            <div class="absolute right-0 top-0">
+              {{> visibility }}
+            </div>
+            <a href="{{ url }}" class="flex h-full items-center justify-center">
+
+                {{#if feature_image}}
+                <img
+                  class="object-cover w-full h-full border border-gray-e6"
+                          style="filter: brightness(0.8);"
+
+                  src="{{img_url feature_image}}"
+                  alt="{{#if feature_image_alt}}{{ feature_image_alt }}{{ else }}{{ title }}{{/if}}"
+                >
+                {{else}}
+                <span class="text-xs font-bold text-gray-500">{{ @site.brand_site_title }}</span>
+                {{/if}}
+              </a>
+          </div>
+        </article>
+      </div>
+  {{/match}}
+
+
+  {{#if @last}}
+    </div>
+  </div>
+  {{/if}}
+{{/foreach}}
+{{/get}}
+
+</div>
+
+
+<div class="container mx-auto hidden lg:block">
+  <div class="h-[7px]" style="background: url('/assets/img/layout/line.png') center"></div>
+</div>

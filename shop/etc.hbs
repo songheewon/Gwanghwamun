@@ -1,0 +1,181 @@
+{{!< ../default}}
+
+{{#get "products" limit=20 filter="featured:true"}}
+{{#if products}}
+<div class="bg-core-blue py-9">
+  <div class="container mx-auto max-w-[1030px]">
+
+
+    <div class="shop-hero-carousel relative">
+      <div class="shop-hero-swiper overflow-hidden">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+
+
+          {{#foreach products}}
+          <div class="swiper-slide">
+
+            <article class="grid lg:grid-cols-2 lg:px-16 gap-x-20 gap-y-8">
+
+              <div class="flex flex-col">
+                <div class="type flex mb-2">
+                  {{> product-type component="product" hero="true"}}
+                </div>
+                <div class="grow">
+                  <h1 class="text-3xl font-bold mb-2">{{ title }}</h1>
+                  <div>
+                    <p class="text-lxs line-clamp-4">{{excerpt}}</p>
+                  </div>
+                </div>
+                <div class="mt-7 lg:mt-0">
+                  <a class="rounded-full bg-black text-white py-2 w-[130px] text-lxs font-bold flex items-center justify-center" href="{{url}}">자세히보기</a>
+                </div>
+              </div>
+
+              <div class="featured-image rounded overflow-hidden">
+                <div class="aspect-post bg-gray-e5">
+                  <a href="{{url}}" class="flex h-full items-center justify-center">
+                    {{#if feature_image}}
+                    <img
+                      class="object-cover w-full h-full"
+                      src="{{img_url feature_image}}"
+                      alt="{{#if feature_image_alt}}{{ feature_image_alt }}{{ else }}{{ title }}{{/if}}"
+                    >
+                    {{else}}
+                    <img
+                    class="object-cover w-full h-full"
+                    src="{{asset "img/layout/_default_01.png"}}"
+                    alt="{{ title }}"
+                  >
+                    {{/if}}
+                  </a>
+                </div>
+              </div>
+
+            </article>
+          </div>
+          {{/foreach}}
+
+          <!-- Slides -->
+        </div>
+      </div>
+
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
+
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-10 mr-[3px]"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+      </div>
+      <div class="swiper-button-next text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-10 ml-[3px]"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+{{/if}}
+{{/get}}
+
+<div class="container mx-auto pt-12">
+  {{> shop-type type="etc" }}
+</div>
+
+{{#get "products" limit="all"}}
+<div class="tc-shop container mx-auto max-w-[1030px]">
+<div class="bluedot-products-list">
+    {{#foreach products visibility="all"}}
+    {{#match option_type "=" "etc"}}
+        <div class="bluedot-product-card">
+            <div class="bluedot-product-card-content">
+                <div class="cover-wrap{{#if feature_image}} have-cover-image{{else}} have-not-cover-image{{/if}}">
+                    <div class="cover">
+                        {{#if feature_image}}
+                            <img
+                                srcset="{{img_url feature_image size="s"}} 300w,
+                                        {{img_url feature_image size="m"}} 600w,
+                                        {{img_url feature_image size="l"}} 1000w,
+                                        {{img_url feature_image size="xl"}} 2000w"
+                                sizes="(max-width: 800px) 400px,
+                                    (max-width: 1170px) 1170px,
+                                        2000px"
+                                src="{{img_url feature_image size="xl"}}"
+                                alt="{{title}}"
+                            />
+                        {{/if}}
+                        <a href="{{url}}"></a>
+                    </div>
+
+                    {{#if primary_author.profile_image}}
+                    <div class="profile">
+                        <img class="author-profile-image" src="{{img_url primary_author.profile_image}}" alt="{{name}}" />
+                    </div>
+                    {{/if}}
+                </div>
+                <div class="info{{#if payment.type}} have-header{{/if}}">
+                    {{#if payment.type}}
+                    <div class="header"><span class="label label-{{payment.type}}">{{payment.type_text}}</span></div>
+                    {{/if}}
+                    <h3>
+                        <a href="{{url}}">{{title}}</a>
+                    </h3>
+                    <p class="excerpt">
+                        {{excerpt}}
+                    </p>
+
+                    {{#if @member.paid}}
+                        {{#if payment.have_price_sale}}
+                        <div class="prices have-original-price">
+                            <div class="original-price">
+                                <span class="notice-text">유료회원할인가</span>
+                                {{#if payment.have_price_original}}
+                                <span class="price-text">{{price payment.price_original currency="KRW"}}</span>
+                                {{else}}
+                                <span class="price-text">{{price payment.price currency="KRW"}}</span>
+                                {{/if}}
+                            </div>
+                            <div class="price">
+                                <span class="sale-percent">{{payment.price_sale_percent}}%</span>
+
+                                {{price payment.price_sale currency="KRW"}}
+                            </div>
+                        </div>
+                        {{else}}
+                            {{#if payment.have_price_original}}
+                                <div class="prices have-original-price">
+                                    <div class="original-price"><span class="price-text">{{price payment.price_original currency="KRW"}}</span></div>
+                                    <div class="price">
+                                        <span class="sale-percent">{{payment.price_original_sale_percent}}%</span>
+
+                                        {{price payment.price currency="KRW"}}
+                                    </div>
+                                </div>
+                            {{else}}
+                            <div class="prices">
+                                <div class="price">{{price payment.price currency="KRW"}}</div>
+                            </div>
+                            {{/if}}
+                        {{/if}}
+                    {{else}}
+                        <div class="prices full-price-list">
+                            <div class="price">
+                                <span class="price-label">무료회원 할인가</span>
+                                <span class="price-text">{{price payment.price currency="KRW"}}</span>
+                            </div>
+                            {{#if payment.have_price_sale}}
+                            <div class="price">
+                                <span class="price-label">유료회원 할인가 </span>
+                                <span class="price-text">{{price payment.price_sale currency="KRW"}}</span>
+                            </div>
+                            {{/if}}
+                        </div>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+        {{/match}}
+    {{/foreach}}
+</div>
+</div>
+{{/get}}

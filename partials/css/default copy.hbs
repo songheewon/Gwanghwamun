@@ -1,0 +1,189 @@
+<style>
+/* For Bluedot */
+:root {
+  --body-background:var(--bg-color);
+  --content-background:var(--bg-color);
+  --paywall-background:rgba(0,0,0,0.8);
+  --text:var(--color-text);
+  --sub-text:var(--color-gray);
+}
+.bluedot-signin h3.signin-subtitle {
+  color:var(--text);
+}
+
+.bluedot-footer { padding-top:20px; padding-bottom:30px; }
+.bluedot-footer h2 { display:none; }
+
+.c-header .c-logo .dark,
+html[data-user-color-scheme="dark"] .c-header .c-logo .light {
+  display: none;
+}
+
+html[data-user-color-scheme="dark"] .c-header .c-logo .dark {
+  display: inline-block;
+}
+
+/* Style For Default */
+  body,
+.c-post-card__excerpt,
+.c-content dl,
+.c-content fieldset,
+.c-content form,
+.c-content ol,
+.c-content p,
+.c-content pre,
+.c-content ul
+{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    line-height: 28px;
+}
+
+.c-post-card__title {
+  font-size: 20px;
+  line-height: 30px;
+  word-break: keep-all;
+}
+
+.c-post-card__excerpt {
+  font-size: 14px;
+  line-height: 24px;
+}
+
+@media (min-width: 64em) {
+.c-post-card__title {
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
+
+.c-post-card:active .c-post-card__title-link, .c-post-card:focus .c-post-card__title-link, .c-post-card:hover .c-post-card__title-link {
+  border-color:#04a6d7;
+}
+
+.subscription-benefit { margin-bottom:40px; padding-bottom:26px; border-bottom:1px solid var(--box-background); }
+.subscription-benefit h4 { margin-top:-20px; margin-bottom:20px; color:var(--sub-text); }
+.subscription-benefit ul { list-style:none; background:var(--box-background); border:1px solid var(--box-in-box-background); border-radius:10px; padding:10px 20px; margin:0 auto; margin-bottom:20px; }
+.subscription-benefit ul li { font-size:14px; text-align:center; }
+.subscription-benefit ul li + li { margin-top:4px; }
+.subscription-benefit p { font-size:13px; text-align:center; }
+
+
+.c-post-card__date {
+  padding-left: 0px;
+  margin-left: 0px;
+  box-shadow: none;
+}
+
+.c-post-card__tags ~ .c-post-card__date {
+  padding-left: 8px;
+  margin-left: 8px;
+  -webkit-box-shadow: inset 1px 0 0 0 var(--color-gray);
+  box-shadow: inset 1px 0 0 0 var(--color-gray);
+}
+
+@media (min-width: 80em) {
+  .c-post-card__tags ~ .c-post-card__date {
+    padding-left: 16px;
+    margin-left: 16px;
+  }
+}
+
+.hero-banner {
+  position: relative;
+  width: 100%;
+  margin-bottom: 1.75rem;
+  background: url({{ @site.cover_image }}) no-repeat center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-cover {
+  width: 100%;
+  display: block;
+  height: auto;
+  visibility: hidden;
+  position: absolute;
+}
+
+.hero-feature,
+.hero-description {
+  margin-bottom: 2rem;
+}
+
+.hero-feature-image {
+  max-width: 250px;
+}
+
+.hero-content {
+  position: relative;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.875rem;
+  padding: 3.5rem 1.25rem;
+}
+
+.hero-description {
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.hero-banner .buttons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.hero-banner .button {
+  border-radius: 50rem;
+  border: 1px solid #fff;
+  color: #fff;
+  height: 46px;
+  min-width: 245px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+  column-gap: 0.25rem;
+}
+
+.hero-banner .button.button-subscribe {
+  background-color: #fff;
+  color: #4969C0;
+}
+
+.hero-banner .button .icon {
+  display: flex;
+  align-items: center;
+}
+
+.icon-subscription path {
+  fill: #4969C0;
+}
+
+.cover-image {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.cover-image img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+</style>

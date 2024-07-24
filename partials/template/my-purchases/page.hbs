@@ -1,0 +1,145 @@
+{{#if @member}}
+<div class="container mx-auto pt-12 mb-6 max-w-[1030px]">
+  <div class="text-2xl font-bold">내 구매</div>
+</div>
+<div class="container mx-auto mb-6 max-w-[1030px]">
+  {{> template/my-purchases/navigation }}
+</div>
+
+<div class="tc-shop container mx-auto max-w-[1030px]">
+  {{#get "products" paid=true limit="18" include="tags,authors" filter=filter order="published_at desc"}}
+  {{#if products}}
+  <div class="bluedot-products-list">
+    {{#foreach products visibility="all"}}
+        {{!-- {{> product-card }} --}}
+
+    <div class="bluedot-product-card">
+      <div class="bluedot-product-card-content">
+
+        <div class="cover-wrap{{#if feature_image}} have-cover-image{{else}} have-not-cover-image{{/if}}">
+          <div class="cover">
+          {{#if feature_image}}
+            <img
+                srcset="{{img_url feature_image size="s"}} 300w,
+                        {{img_url feature_image size="m"}} 600w,
+                        {{img_url feature_image size="l"}} 1000w,
+                        {{img_url feature_image size="xl"}} 2000w"
+                sizes="(max-width: 800px) 400px,
+                    (max-width: 1170px) 1170px,
+                        2000px"
+                src="{{img_url feature_image size="xl"}}"
+                alt="{{title}}"
+                class="cover"
+            />
+          {{else}}
+            <img
+                src="//storage.googleapis.com/cdn.media.bluedot.so/img/default_product_cover.png"
+                alt="{{title}}"
+                class="cover empty-cover"
+            />
+          {{/if}}
+
+          {{#if payment.is_webinar}}
+            {{#if payment.event.used_event_date}}
+            {{!-- <div class="calendar">
+                <span class="month" data-month="{{date payment.event.event_start_date format="M"}}">{{date payment.event.event_start_date format="M월"}}</span>
+                <span class="day" data-day="{{date payment.event.event_start_date format="D"}}">{{date payment.event.event_start_date format="D"}}</span>
+            </div> --}}
+              {{#unless payment.event.event_is_past}}
+            <span class="label-dday">D - {{payment.event.event_d_day}}</span>
+              {{else}}
+            <span class="label-dday">{{t '종료'}}</span>
+              {{/unless}}
+            {{/if}}
+          {{/if}}
+            <a href="{{url}}"></a>
+          </div>
+
+          {{#if primary_author.profile_image}}
+          <div class="profile">
+            <img class="author-profile-image" src="{{img_url primary_author.profile_image}}" alt="{{name}}" />
+          </div>
+          {{/if}}
+        </div>{{!-- cover-wrap --}}
+
+        <div class="info{{#if payment.type}} have-header{{/if}}">
+          {{#if payment.type}}
+          <div class="header"><span class="label label-{{payment.type}}">{{payment.type_text}}{{#if payment.event.type_text}} : {{payment.event.type_text}}{{/if}}</span></div>
+          {{/if}}
+          <h3><a href="{{url}}">{{title}}</a></h3>
+          <p class="excerpt">{{excerpt}}</p>
+
+          {{#if @member.paid}}
+            {{#if payment.have_price_sale}}
+          <div class="prices have-original-price">
+            <div class="original-price">
+              <span class="notice-text">유료회원할인가</span>
+              {{#if payment.have_price_original}}
+              <span class="price-text">{{price payment.price_original currency="KRW"}}</span>
+              {{else}}
+              <span class="price-text">{{price payment.price currency="KRW"}}</span>
+              {{/if}}
+            </div>
+            <div class="price">
+              <span class="sale-percent">{{payment.price_sale_percent}}%</span>
+
+              {{price payment.price_sale currency="KRW"}}
+            </div>
+          </div>
+            {{else}}
+              {{#if payment.have_price_original}}
+          <div class="prices have-original-price">
+            <div class="original-price"><span class="price-text">{{price payment.price_original currency="KRW"}}</span></div>
+            <div class="price">
+              <span class="sale-percent">{{payment.price_original_sale_percent}}%</span>
+
+              {{price payment.price currency="KRW"}}
+            </div>
+          </div>
+              {{else}}
+                {{#unless payment.is_stop_selling}}
+          <div class="prices">
+            <div class="price">{{price payment.price currency="KRW"}}</div>
+          </div>
+                {{else}}
+                    {{!-- 판매중지 상태 --}}
+                {{/unless}}
+                {{/if}}
+            {{/if}}
+          {{else}}
+            {{#unless payment.is_stop_selling}}
+          <div class="prices full-price-list">
+            <div class="price">
+              <span class="price-label">무료회원 할인가</span>
+              <span class="price-text">{{price payment.price currency="KRW"}}</span>
+            </div>
+              {{#if payment.have_price_sale}}
+            <div class="price">
+                <span class="price-label">유료회원 할인가 </span>
+                <span class="price-text">{{price payment.price_sale currency="KRW"}}</span>
+            </div>
+              {{/if}}
+          </div>
+            {{else}}
+                  {{!-- 판매중지 상태 --}}
+            {{/unless}}
+          {{/if}}
+        </div>
+      </div>
+    </div>
+    {{/foreach}}
+  </div> {{!-- bluedot-products-list --}}
+  {{else}}
+  <div class="pt-12">
+    {{> template/messages/products-empty }}
+  </div>
+  {{/if}}
+  {{/get}}
+
+</div>
+{{else}}
+<div class="tc-shop container mx-auto max-w-[1030px] pt-12 text-center">
+  {{!-- for non-members --}}
+  {{> template/messages/non-members }}
+</div>
+{{/if}}

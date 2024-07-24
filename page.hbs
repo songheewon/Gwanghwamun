@@ -1,0 +1,46 @@
+{{!< default}}
+
+{{#post}}
+
+<article>
+  <header class="bg-gray-f4">
+    <div class="container mx-auto max-w-[680px] pt-14 pb-9">
+      <h1 class="text-[2rem] text-center font-bold tracking-tight leading-tight mb-10 px-5">{{title}}</h1>
+
+      <div class="flex text-xs font-medium items-center justify-center gap-x-9">
+        {{#primary_author}}
+        <div class="flex items-center gap-x-3">
+          <div class="flex rounded-full overflow-hidden aspect-square w-9 bg-gray-400">
+            <img class="object-cover w-full h-full" src="{{profile_image}}" alt="{{name}}">
+          </div>
+          <a href="{{url}}">{{name}}</a>
+        </div>
+        {{/primary_author}}
+        <div><time datetime="{{date format="YYYY-MM-DD"}}">{{date format="YYYY년 M월 D일"}}</time></div>
+
+        {{!-- {{bluedot_comment_button}} --}}
+
+        {{#if (not @site.comment_read_permission "none")}}
+          {{#if comment_count}}
+        <div><a class="byline-comments" href="{{url}}comments" data-portal="comment" data-post-uuid="{{uuid}}">댓글 {{comment_count}}개 보기</a></div>
+          {{else}}
+        <div><a class="byline-comments" href="{{url}}comments" data-portal="comment" data-post-uuid="{{uuid}}">댓글 남기기</a></div>
+          {{/if}}
+        {{/if}}
+      </div>
+    </div>
+
+  </header>
+
+  <div class="container mx-auto max-w-[680px] py-12">
+    <div class="c-content">
+      {{ content }}
+    </div>
+
+
+  {{#unless access}}
+    {{> page-upgrade-cta }}
+  {{/unless}}
+  </div>
+</article>
+{{/post}}

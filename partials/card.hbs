@@ -1,0 +1,30 @@
+<article class="card">
+  <div class="card-media">
+  {{#if feature_image}}
+    <a href="{{ url }}">
+      <img
+        class="card-image"
+        src="{{img_url feature_image}}"
+        alt="{{#if feature_image_alt}}{{ feature_image_alt }}{{ else }}{{ title }}{{/if}}"
+      >
+    </a>
+  {{else}}
+    <div class="no-image">{{@site.brand_site_title}}</div>
+  {{/if}}
+  </div>
+
+  <div class="card-content">
+    <h1 class="card-headline"><a href="{{ url }}">{{ title }}</a></h1>
+    {{#if showExcerpt}}
+    <p class="card-excerpt">{{ excerpt }}</p>
+    {{/if}}
+
+    <div class="card-meta">
+      <div class="tags">{{tags separator="" limit="1"}}</div>
+
+      {{> byline component="card"}}
+
+      {{> timestamp component="card"}}
+    </div>
+  </div>
+</article>

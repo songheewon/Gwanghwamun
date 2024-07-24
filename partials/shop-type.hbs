@@ -1,0 +1,22 @@
+<div style="display:none;">{{product_categories}}</div>
+{{!-- <div class="flex items-center flex-wrap text-sm font-bold gap-x-3 gap-y-3 lg:justify-center">
+  <a class="px-8 py-4 flex items-center justify-center rounded-full{{#match type "=" "all"}} bg-core-blue{{else}} bg-gray-eb text-gray-o7{{/match}}" href="/shop/">전체보기</a>
+  {{#if @member}}
+  <a class="px-8 py-4 flex items-center justify-center rounded-full{{#match type "=" "my-purchases"}} bg-core-blue{{else}} bg-gray-eb text-gray-o7{{/match}}" href="/shop/my-purchases/">내 구매</a>
+  {{/if}}
+  <a class="px-8 py-4 flex items-center justify-center rounded-full{{#match type "=" "online-class"}} bg-core-blue{{else}} bg-gray-eb text-gray-o7{{/match}}" href="/shop/online-class/">온라인 강좌</a>
+  <a class="px-8 py-4 flex items-center justify-center rounded-full{{#match type "=" "webinar"}} bg-core-blue{{else}} bg-gray-eb text-gray-o7{{/match}}" href="/shop/webinar/">이벤트</a>
+  <a class="px-8 py-4 flex items-center justify-center rounded-full{{#match type "=" "digital-book"}} bg-core-blue{{else}} bg-gray-eb text-gray-o7{{/match}}" href="/shop/digital-book/">디지털 북</a>
+  <a class="px-8 py-4 flex items-center justify-center rounded-full{{#match type "=" "etc"}} bg-core-blue{{else}} bg-gray-eb text-gray-o7{{/match}}" href="/shop/etc/">기타</a>
+</div> --}}
+
+
+<div class="flex items-center flex-wrap text-sm font-bold gap-x-3 gap-y-3 lg:justify-center">
+  {{#link href="/shop/" class="c-shop-category__button px-8 py-4 flex items-center justify-center rounded-full" activeClass="current"}}전체보기{{/link}}
+  {{#if @member}}
+  <a class="px-8 py-4 flex items-center justify-center rounded-full{{#match type "=" "my-purchases"}} bg-core-blue{{else}} bg-gray-eb text-gray-o7{{/match}}" href="/shop/my-purchases/">내 구매</a>
+  {{/if}}
+{{#foreach product_categories}}
+  {{#link href=(url) class="c-shop-category__button px-8 py-4 flex items-center justify-center rounded-full" activeClass="current"}}{{label}}{{/link}}
+{{/foreach}}
+</div>
