@@ -1,0 +1,578 @@
+{{!< default}} {{#contentFor "custom_body_class" }} shop-template{{/contentFor}} <div class="s-products-hero">
+    <div class="o-grid" style="padding: 1%;">
+        <div class="o-grid__col o-grid__col--full" style="padding: 0">
+
+            {{#contentFor "scripts"}}
+            <script>
+                const featuredProductSlide = new Swiper(".s-products-slide__swiper .swiper", {
+                    observer: true,
+                    observeParents: true,
+                    breakpoints: {
+                        0: {
+                            slidesPerView: "1",
+                            spaceBetween: 5,
+                        },
+                        1024: {
+                            slidesPerView: "2",
+                            spaceBetween: 20,
+                        },
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    watchSlidesProgress: true,
+                    autoHeight: true,
+                });
+            </script>
+            {{/contentFor}}
+        </div>
+    </div>
+    </div>
+    <div class="ai-chatbot">
+        <div class="ai-chatbot-container" id="ai-chatbot__qna">
+            <div class="ai-chatbot-container" id="ai-chatbot-container"
+                style="height: fit-content !important; overflow: hidden;">
+                <div class="ai-chatbot__title">안녕하세요😉 여러분의 <span
+                        class="ai-chatbot__title--brand">{{@site.brand_site_title}}</span> 인공지능🔮 도우미입니다.</div>
+                <div class="ai-chatbot__title">무엇이든 편하게 질문해주세요✨✨</div>
+                <div class="ai-chatbot__description">여러 자료를 검색해 인공지능이 해답을 찾아주는 생성하는 서비스입니다.</div>
+                <div class="ai-chatbot__description">안내 문구: {{@site.chatbot_notification}}</div>
+            </div>
+            <div class="ai-chatbot__qna" id="ai-container">
+                <div class="ai-chatbot__question" id="question">AI의 미래가 궁금해요🤔</div>
+                <div class="ai-chatbot__question" id="question">퍼플렉시티는 성공할까요?🌈</div>
+                <div class="ai-chatbot__question" id="question">AI의 미래가 궁금해요🤔</div>
+            </div>
+            {{#get "products" filter="featured:true" include="tags" order="published_at desc"}}
+            <div class="s-products-slide__container" style="display: none;">
+                <div class="s-products-slide__main">
+                    <div class="s-products-slide__swiper">
+                        <div class="swiper mobile-swiper">
+                            <div class="swiper-wrapper">
+                                {{#foreach products}}
+                                <div class="swiper-slide">
+                                    <a href="{{url}}">
+                                        <div class="related-news__container">
+                                            <div class="related-news__media">
+                                                <img class="related-news__img"
+                                                    src="https://tse1.mm.bing.net/th?id=OIP.SOQdc1ySUgGeCOM_nCWacgHaHa&pid=Api&P=0&h=220" />
+                                            </div>
+                                            <div class="related-news__info">
+                                                <div class="related-news__title">{{title}}</div>
+                                                <div class="related-news__link">LINK영역</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                {{/foreach}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="s-products-slide__pagination swiper-pagination"
+                        style="position: relative !important; padding-top: 40px;"></div>
+                </div>
+            </div>
+            {{/get}}
+            <div class="ai-chatbot-input">
+                <textarea class="ai-chatbot__message" placeholder="" id="message" onkeydown='mykeydown()'></textarea>
+                <button class="ai-chatbot__send" type="button" id="send-btn">대화하기</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .s-products-slide__swiper-button {
+            border-radius: none;
+        }
+
+        .s-products-hero {
+            background-color: var(--chatbot-background);
+        }
+
+        .s-products-slide__container {
+            margin: 0 auto;
+            width: 90%;
+        }
+
+        .s-products-slide-item__title {
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 27px;
+            letter-spacing: -1px;
+        }
+
+        .s-products-slide-item__media {
+            border-radius: 25px;
+        }
+
+        .ai-chatbot {
+            background-color: #f4f4f4;
+            padding: 20px 0;
+        }
+
+        .ai-chatbot-container {
+            width: 730px;
+            margin: 0 auto;
+            height: 600px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+        .ai-chatbot-container::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        .ai-chatbot-container::-webkit-scrollbar-button {
+            display: none;
+        }
+
+        .ai-chatbot-container::-webkit-scrollbar-track {
+            background: none;
+        }
+
+        .ai-chatbot-container::-webkit-scrollbar-thumb {
+            border-radius: 50px;
+            background: rgba(68, 170, 255, 0.1);
+        }
+
+        .ai-chatbot-container::-webkit-scrollbar-thumb:hover {
+            background: #1350F1;
+        }
+
+        .mobile-swiper::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        .mobile-swiper::-webkit-scrollbar-button {
+            display: none;
+        }
+
+        .mobile-swiper::-webkit-scrollbar-track {
+            background: none;
+        }
+
+        .mobile-swiper::-webkit-scrollbar-thumb {
+            border-radius: 50px;
+            background: rgba(68, 170, 255, 0.1);
+        }
+
+        .mobile-swiper::-webkit-scrollbar-thumb:hover {
+            background: #1350F1;
+        }
+
+
+        .ai-chatbot__title {
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 32px;
+            letter-spacing: -1px;
+        }
+
+        .ai-chatbot__title--brand {
+            color: #009C82;
+        }
+
+        .ai-chatbot__description {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 25px;
+            letter-spacing: -1px;
+        }
+
+        .ai-chatbot__qna {
+            float: right;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            text-align: end;
+            align-items: flex-end;
+            margin-top: 20px;
+            width: 98%;
+            padding-right: 10px;
+        }
+
+        .ai-chatbot__personal-question {
+            background-color: #1350F1;
+            color: #ffffff;
+            width: fit-content;
+            padding-right: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+            text-align: start;
+            border-radius: 3px;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 22px;
+            letter-spacing: -1px;
+            align-self: start;
+        }
+
+        .s-products-slide__main {
+            width: 100% !important;
+        }
+
+        .ai-chatbot__answer-from-server {
+            width: 100%;
+            text-align: start;
+            color: #000000;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 25px;
+            letter-spacing: -1px;
+        }
+
+        .ai-chatbot__question {
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 22px;
+            letter-spacing: -1px;
+            color: #1350F1;
+            border: 1px solid #1350F1;
+            border-radius: 3px;
+            width: fit-content;
+            padding: 7px 10px;
+            margin: 10px 0;
+            display: flex;
+            justify-content: end;
+            cursor: pointer;
+        }
+
+        .ai-chatbot__question:hover {
+            background-color: rgba(68, 170, 255, 0.2);
+        }
+
+        .ai-chatbot__loading {
+            width: 100%;
+            text-align: start;
+        }
+
+        .ai-chatbot-input {
+            width: 98%;
+            padding-top: 30px;
+            margin: 20px auto;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .ai-chatbot__message {
+            resize: none;
+            width: 80%;
+            outline-color: #1350F1;
+        }
+
+        .ai-chatbot__send {
+            color: white;
+            border: 0;
+            background-color: #1350F1;
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 22px;
+            letter-spacing: -1px;
+            padding: 10px 15px;
+            width: fit-content;
+            height: fit-content;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .related-news__container {
+            width: 250px;
+            box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .related-news__media {
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+        }
+
+        .related-news__img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .related-news__info {
+            padding: 20px 10px;
+        }
+
+        .related-news__title {
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 25px;
+            letter-spacing: -1px;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-align: start;
+        }
+
+        .related-news__link {
+            text-align: start;
+            margin-top: 20px;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 13px;
+            letter-spacing: -0.02em;
+            color: #8C8C82;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .o-footer {
+            display: none;
+        }
+    </style>
+
+    <script type="text/javascript">
+        const chattingRoom = document.querySelector('#ai-chatbot__qna');
+        const relatedSwiper = new Swiper(".swiper-realted-questions-container .swiper", {
+            pagination: {
+                el: '.swiper-realted-questions-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-realted-questions-pagination .swiper-button-next',
+                prevEl: '.swiper-realted-questions-pagination .swiper-button-prev',
+            },
+            watchSlidesProgress: true,
+        });
+
+        var questions = document.querySelectorAll('#question');
+        for (const question of questions) {
+            question.addEventListener('mouseover', function () {
+                var message = document.querySelector('#message');
+                message.placeholder = question.innerHTML;
+            })
+        }
+        for (const question of questions) {
+            question.addEventListener('click', function () {
+                question.style.backgroundColor = "#1350F1";
+                question.style.color = "#FFFFFF";
+                var message = document.querySelector('#message');
+                message.value = question.innerHTML;
+                addQuestion();
+                apiTest2();
+                message.value = '';
+            })
+        }
+
+        async function apiTest2() {
+            var message = document.querySelector('#message');
+
+            let result = await fetch(
+                "https://simplexity.kr/bluedot/news/chat",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Access-Control-Allow-Origin": "*",
+                        "x-client-id": "bluedot",
+                        "x-client-secret": "2839f871-6c3c-4cd5-9931-3e9f4bd8172b",
+                    },
+                    body: JSON.stringify({
+                        chatMessage: message.value,
+                        collection: "test_table",
+                        model: 'gpt-4o-mini',
+                        modelApiKey: null,
+                        maxToken: 512,
+                        related_query: true,
+                        stream: true,
+                        history: [
+                            {
+                                role: "user",
+                                content: "",
+                                additional_kwargs: {},
+                            },
+                        ],
+                    }),
+                }
+            )
+            var reader = result.body.getReader();
+            var container = document.querySelector('#ai-container');
+            const answerDiv = document.createElement('div');
+            answerDiv.className = "ai-chatbot__answer-from-server";
+            container.appendChild(answerDiv);
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) {
+                    if (temp.sources) {
+                        const relatedDivContainer = document.createElement('div');
+                        relatedDivContainer.className = "s-products-slide__container";
+                        relatedDivContainer.style.alignSelf = 'start';
+                        relatedDivContainer.style.width = '100%';
+
+                        const relatedDivMain = document.createElement('div');
+                        relatedDivMain.className = 's-products-slide__main';
+                        const relatedDivSwiper = document.createElement('div');
+                        relatedDivSwiper.className = 's-products-slide__swiper';
+
+                        const relatedDivMobileSwiper = document.createElement('div');
+                        relatedDivMobileSwiper.className = 'swiper mobile-swiper';
+                        const relatedDivSwiperWrapper = document.createElement('div');
+                        relatedDivSwiperWrapper.className = 'swiper-wrapper';
+                        relatedDivSwiperWrapper.style.gap = '40px';
+                        relatedDivSwiperWrapper.style.paddingBottom = '20px';
+
+                        relatedDivMobileSwiper.appendChild(relatedDivSwiperWrapper);
+                        relatedDivSwiper.appendChild(relatedDivMobileSwiper);
+                        relatedDivMain.appendChild(relatedDivSwiper);
+                        relatedDivContainer.appendChild(relatedDivMain);
+
+                        for (let i = 0; i < temp.sources.length; i++) {
+                            const swiperSlide = document.createElement('div');
+
+                            const relatedNewsHref = document.createElement('a');
+                            relatedNewsHref.href = temp.sources[i].link;
+                            relatedNewsHref.target = "_blank";
+
+                            swiperSlide.className = 'swiper-slide';
+                            swiperSlide.style.opacity = '1';
+                            swiperSlide.style.width = '250px';
+                            const relatedNewsContainer = document.createElement('div');
+                            relatedNewsContainer.className = 'related-news__container';
+                            const relatedNewsMedia = document.createElement('div');
+                            relatedNewsMedia.className = 'related-news__media';
+                            const relatedNewsImage = document.createElement('img');
+                            relatedNewsImage.className = 'related-news__img';
+                            relatedNewsImage.src = 'https://tse1.mm.bing.net/th?id=OIP.SOQdc1ySUgGeCOM_nCWacgHaHa&pid=Api&P=0&h=220';
+                            const relatedNewsInfo = document.createElement('div');
+                            relatedNewsInfo.className = 'related-news__info';
+                            const relatedNewsTitle = document.createElement('div');
+                            relatedNewsTitle.className = 'related-news__title';
+                            relatedNewsTitle.innerHTML = temp.sources[i].title;
+                            const relatedNewsLink = document.createElement('div');
+                            relatedNewsLink.className = 'related-news__link';
+                            relatedNewsLink.innerHTML = temp.sources[i].link;
+                            relatedNewsInfo.appendChild(relatedNewsTitle);
+                            relatedNewsInfo.appendChild(relatedNewsLink);
+                            relatedDivSwiperWrapper.appendChild(relatedNewsInfo);
+
+                            relatedNewsMedia.appendChild(relatedNewsImage);
+                            relatedNewsContainer.appendChild(relatedNewsMedia);
+                            relatedNewsContainer.appendChild(relatedNewsInfo);
+                            relatedNewsHref.appendChild(relatedNewsContainer);
+                            swiperSlide.appendChild(relatedNewsHref);
+                            relatedDivSwiperWrapper.appendChild(swiperSlide);
+                        }
+
+                        container.insertBefore(relatedDivContainer, answerDiv);
+                    }
+                    if (temp.suggestors) {
+                        for (let i = 0; i < temp.suggestors.length; i++) {
+                            const suggestorDiv = document.createElement('div');
+                            suggestorDiv.className = "ai-chatbot__question";
+                            suggestorDiv.id = "question";
+                            suggestorDiv.innerHTML = temp.suggestors[i];
+                            container.appendChild(suggestorDiv);
+                            chattingRoom.scrollTop = container.scrollHeight;
+                            suggestorDiv.addEventListener('mouseover', function () {
+                                var message = document.querySelector('#message');
+                                message.placeholder = suggestorDiv.innerHTML;
+                            });
+                            suggestorDiv.addEventListener('click', function () {
+                                suggestorDiv.style.backgroundColor = "#1350F1";
+                                suggestorDiv.style.color = "#FFFFFF";
+                                var message = document.querySelector('#message');
+                                message.value = suggestorDiv.innerHTML;
+                                addQuestion();
+                                apiTest2();
+                                message.value = '';
+                            });
+                        }
+                    }
+                    const loadingButton = document.querySelector('.ai-chatbot__loading');
+                    loadingButton.remove();
+                    break;
+                }
+                const decoder = new TextDecoder();
+                const str = decoder.decode(value).substr(6);
+                var temp = JSON.parse(str);
+                console.log(temp)
+
+                for (let i = 0; i < temp.resp.length; i++) {
+                    answerDiv.innerHTML += temp.resp[i];
+                }
+                chattingRoom.scrollTop = container.scrollHeight;
+            }
+        }
+
+        function addQuestion() {
+            var message = document.querySelector('#message');
+            const newQuestion = document.createElement('div');
+            newQuestion.className = "ai-chatbot__personal-question";
+            newQuestion.innerHTML = message.value;
+            var container = document.querySelector('#ai-container');
+            container.appendChild(newQuestion);
+            const beforeAnswer = document.createElement('div');
+            beforeAnswer.className = "ai-chatbot__loading";
+            beforeAnswer.innerHTML = `<svg width="56" height="20" viewBox="0 0 56 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="5" cy="15" r="5" fill="#3C72FF"/>
+<circle cx="28" cy="5" r="5" fill="#3C72FF"/>
+<circle cx="51" cy="15" r="5" fill="#3C72FF"/>
+</svg>`;
+            container.appendChild(beforeAnswer);
+            chattingRoom.scrollTop = container.scrollHeight;
+        }
+
+        var sendBtn = document.querySelector('#send-btn');
+        sendBtn.addEventListener('click', function () {
+            var message = document.querySelector('#message');
+            if (message.value) {
+                addQuestion();
+                apiTest2();
+                message.value = none;
+            }
+            else {
+                alert("질문을 입력해주세요")
+            }
+        })
+
+        function mykeydown() {
+            if (window.event.keyCode == 13) //enter 일 경우
+            {
+                var message = document.querySelector('#message');
+                if (message.value) {
+                    addQuestion();
+                    apiTest2();
+                    message.value = '';
+                }
+                else {
+                    alert("질문을 입력해주세요")
+                }
+            }
+        }
+
+        async function apiTest() {
+            let result = await fetch("https://simplexity.kr/bluedot/news/add", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                    "x-client-id": "bluedot",
+                    "x-client-secret": "2839f871-6c3c-4cd5-9931-3e9f4bd8172b",
+                },
+                body: JSON.stringify({
+                    collection: "test_table",
+                    news_id: "4",
+                    title: "[미디어 브리핑] AI 챗봇, 음모론 감소 효과 20% 성공 등",
+                    content: "AI 번역, '충분히 좋아졌다' • 이코노미스트가 AI 번역 콘텐츠를 '스낵 사이즈' 앱 에스프레소에 도입했습니다. 이는 AI 기술이 '충분히 좋아졌다'는 판단 하에 이루어진 결정입니다. • 루드비히 지겔레 이코노미스트 AI 이니셔티브 수석 편집자는 AI 번역이 완벽한 해결책은 아니지만, 현재 수준에서 충분히 활용 가능하다고 평가했습니다. • 에스프레소 앱은 프랑스어, 독일어, 중국어, 스페인어로 AI 번역된 콘텐츠를 제공하며, 전 세계 16세 이상 학생들에게 무료로 제공됩니다. AI 번역의 도전과 한계 • 지겔레 편집자는 AI 번역이 특히 저널리즘 분야에서 완벽한 해결책이 될 수 없다고 언급했습니다. 문화적 특수성 때문에 번역이 어렵기 때문입니다.",
+                    link: "https://thecore.media/midieo-beuriping-ai-caesbos-eummoron-gamso-hyogwa-20-seonggong-deung/",
+                    date: "2024-09-30 08:00:02",
+                    category: "test category",
+                    source: "",
+                }),
+            });
+            console.log(result.status);
+        }
+    </script>

@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /bluedot/
+Disallow: /p/
+Disallow: /*/comments/
+
+# Sitemaps
+Sitemap: https://thecore.media/sitemap.xml

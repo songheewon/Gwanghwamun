@@ -2,7 +2,7 @@
   Get related posts based on tags
  -->
 
-{{#get 'posts' limit='4' include='authors' filter='tags:[{{post.tags}}]+id:-{{post.id}}' order="published_at desc" as |related-posts|}}
+{{#get 'posts' limit='4' include='authors' filter='tags:[{{post.tags}}]+id:-{{post.id}}+posts.view_count:>=60' order="published_at desc,posts.view_count desc" as |related-posts|}}
   {{#if related-posts}}
   <div class="container mx-auto py-14">
     <div class="text-2xl font-bold mb-6">당신이 놓친 글</div>

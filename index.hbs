@@ -125,9 +125,8 @@
 </div>
 {{/if}}
 
-
-{{#if @custom.tag_slugs_for_home_sections}}
-{{#get "tags" filter="slug:[{{@custom.tag_slugs_for_home_sections}}]"}}
+{{#if @site.tag_names}}
+{{#get "tags" filter="slug:[{{@site.tag_names}}]"}}
 {{#if tags}}
 
 <div class="lg:container lg:mx-auto">
