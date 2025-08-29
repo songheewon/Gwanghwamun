@@ -60,6 +60,37 @@
   },
   "config": {
     "custom": {
+      "ad_visibility": {
+        "group": "ad",
+        "type": "boolean",
+        "default": true,
+        "title": "광고 활성화 여부",
+        "description": "광고를 표시하려면 활성화하세요."
+      },
+      "home_ad_img": {
+        "group": "ad",
+        "type": "image",
+        "title": "홈 광고 이미지",
+        "description": "홈에 노출 광고 이미지를 선택하세요. (권장: 970px*250px)"
+      },
+      "home_ad_link": {
+        "group": "ad",
+        "type": "text",
+        "title": "홈 광고 링크",
+        "description": "홈에 노출 광고 링크를 입력하세요."
+      },
+      "home_banner_img": {
+        "group": "ad",
+        "type": "image",
+        "title": "홈 배너 이미지",
+        "description": "홈에 노출 배너 이미지를 선택하세요. (권장: 728px*80px)"
+      },
+      "home_banner_link": {
+        "group": "ad",
+        "type": "text",
+        "title": "홈 배너 링크",
+        "description": "홈에 노출 배너 링크를 입력하세요."
+      },
       "banner_visibility": {
         "group": "homepage",
         "type": "boolean",

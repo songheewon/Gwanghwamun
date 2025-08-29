@@ -1,4 +1,5 @@
-{{!< default}}
+{{!< homedefault}}
+{{#contentFor "meta_title"}}원하는 제목{{/contentFor}}
 
 {{#get "products" limit=20 filter="featured:true"}}
 {{#if products}}
@@ -85,3 +86,13 @@
 <div class="tc-shop container mx-auto max-w-[1030px]">
   {{bluedot_products}}
 </div>
+
+
+<style>
+  .excerpt {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    font-weight: 400 !important;
+    color: black !important;
+  }
+</style>

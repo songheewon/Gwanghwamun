@@ -414,7 +414,11 @@ body.view-mobile-menu .drawer {
 section.blutdot-comment-wrap {
   padding-bottom: 0;
   a.bluedot-comment-button {
-    background-color: #000;
+    background-color: #fff !important;
+  }
+  a.bluedot-comment-button:hover {
+    background-color: #012ee3 !important;
+    color: #fff !important;
   }
 }
 

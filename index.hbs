@@ -1,5 +1,4 @@
 {{!< default}}
-
 {{#if @custom.button_color}}{{/if}}
 
 {{#if @custom.notice_section}}
@@ -59,7 +58,11 @@
 <div class="lg:container lg:mx-auto">
   <div class="border-t border-t-black"></div>
 </div>
-
+{{#if @site.ad_visible_pc_home}}
+  {{#match @site.ad_position_home "=" "middle"}}
+    {{> ad }}
+  {{/match}}
+{{/if}}
 {{#if @site.home_visible_shop_section}}
 <div class="py-6">
   <div class="container mx-auto">
@@ -124,6 +127,7 @@
   </div>
 </div>
 {{/if}}
+
 
 {{#if @site.tag_names}}
 {{#get "tags" filter="slug:[{{@site.tag_names}}]"}}
@@ -246,10 +250,6 @@
 {{/get}}
 {{/if}}
 
-
-
-
-{{> home-promotion }}
 
 
 
