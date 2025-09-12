@@ -48,6 +48,26 @@
             <div class="c-content">
                 {{ content }}
             </div>
+            {{#if @site.ad_visible_pc_post}}
+      <template id="post-ad-template">
+        {{> banner-ad }}
+      </template>
+      {{/if}}
+      <script>
+      (function() {
+        var container = document.querySelector('.c-content');
+        if (!container) return;
+        var paragraphs = container.querySelectorAll('p');
+        if (paragraphs.length < 6) return;
+        var tmpl = document.getElementById('post-ad-template');
+        if (!tmpl) return;
+        var holder = document.createElement('div');
+        holder.innerHTML = tmpl.innerHTML.trim();
+        var adNode = holder.firstElementChild;
+        if (!adNode) return;
+        paragraphs[4].parentNode.insertBefore(adNode, paragraphs[5]);
+      })();
+      </script>
         </div>
 
         {{#unless @member}}

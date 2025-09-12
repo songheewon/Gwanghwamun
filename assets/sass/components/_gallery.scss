@@ -12,6 +12,8 @@
 .kg-gallery-container {
   display: flex;
   flex-direction: column;
+  margin: 0 auto !important;
+  margin-top: -20px !important;
 }
 
 .kg-gallery-row {
