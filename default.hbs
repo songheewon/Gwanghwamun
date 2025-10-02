@@ -53,12 +53,12 @@
   <main class="main">
     {{{body}}}
   </main>
-  <footer class="footer">
   {{#if @site.ad_visible_pc_home}}
     {{#match @site.ad_position_home "=" "bottom"}}
       {{> ad}}
     {{/match}}
   {{/if}}
+  <footer class="footer">
     {{#if @site.use_footer}}
     {{> footer}}
     {{/if}}
