@@ -17,6 +17,9 @@
   --bg-gray:         #18181d;
   --bg-white:        var(--color-white);
   --bg-transparent:  rgba(31, 32, 35, .7);
+  --background-secondary: var(--bg-gray);
+  --background-primary: var(--bg-white);
+  --color-text-primary: var(--color-text);
 
   --bg-post-card:      var(--bg-gray);
   --bg-tag-list:       linear-gradient(to left, var(--bg-color), rgba(31, 32, 35, 0));

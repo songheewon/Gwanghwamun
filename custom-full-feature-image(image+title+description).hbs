@@ -38,6 +38,7 @@
                 </div>
             </div>
         </header>
+        </article2>
         <div class="container mx-auto max-w-[680px] py-12">
 
             {{#if access}}
@@ -109,8 +110,12 @@
             </div> --}}
             {{/if}}
             {{/unless}}
-
-            {{bluedot_comment_button}}
+{{#primary_author}}
+        {{> card-author }}
+        {{/primary_author}}
+        <div class="mt-[-80px]">
+    {{bluedot_comment_button}}
+    </div>
 
             {{!-- {{> share }} --}}
 
@@ -125,7 +130,7 @@
             {{/if}}
 
         </div>
-    </article2>
+    
 
     {{bluedot_paywall_popup}}
 

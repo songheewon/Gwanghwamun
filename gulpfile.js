@@ -36,7 +36,7 @@
         return gulp.src('./assets/sass/*.scss')
             .pipe(plumber({errorHandler: onError}))
             .pipe(sass())
-            .pipe(postcss([tailwindcss()]))
+            .pipe(postcss([tailwindcss(require('./tailwind.config.js'))]))
             .pipe(autoprefixer())
             .pipe(rename({suffix: '-min'}))
             .pipe(cleanCSS())
