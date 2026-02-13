@@ -124,74 +124,43 @@
                   <!-- Price Section -->
                   <div class="mb-3">
                     {{#if @member.paid}}
-                      {{#if payment.have_price_sale}}
-                        <div class="text-xs text-gray-600 mb-1">유료회원할인가</div>
-                        <div class="flex items-baseline gap-1 md:gap-2">
-                          {{#match option_value.price_sale "=" null}}
-                            <div class="text-3xs md:text-2xs font-bold py-0.5 px-1.5 md:px-2 bg-[#045CF3] text-white rounded-[20px]">Free</div>
-                            <span class="text-sm md:text-lg font-bold">무료</span>
-                          {{else match option_value.price_sale "=" 0}}
-                            <div class="text-3xs md:text-2xs font-bold py-0.5 px-1.5 md:px-2 bg-[#045CF3] text-white rounded-[20px]">Free</div>
-                            <span class="text-sm md:text-lg font-bold">무료</span>
-                          {{else}}
-                            {{#if option_value.price_original}}
-                              {{#if option_value.price_sale}}
-                                <div class="discount-badge text-3xs md:text-2xs font-bold py-0.5 px-1.5 md:px-2 bg-[#FB7878] text-white rounded-[20px] whitespace-nowrap" data-original="{{price option_value.price_original currency="KRW" currencyFormat="none"}}" data-sale="{{price option_value.price_sale currency="KRW" currencyFormat="none"}}">할인</div>
-                              {{/if}}
-                            {{/if}}
-                            <span class="text-sm md:text-lg font-bold whitespace-nowrap">{{price option_value.price_sale currency="KRW" currencyFormat="none"}}{{#if option_value.price_sale}}원{{/if}}</span>
-                            {{#if option_value.price_original}}
-                              <span class="text-2xs md:text-xs text-gray-400 line-through whitespace-nowrap">{{price option_value.price_original currency="KRW" currencyFormat="none"}}원</span>
-                            {{/if}}
-                          {{/match}}
-                        </div>
-                      {{else}}
-                        <div class="text-xs text-gray-600 mb-1">가격</div>
-                        <div class="flex items-center gap-2">
-                          {{#match option_value.price "=" null}}
-                            <div class="text-2xs font-bold py-0.5 px-2 bg-pink-300 text-white rounded">Free</div>
-                            <span class="text-lg font-bold">무료</span>
-                          {{else match option_value.price "=" 0}}
-                            <div class="text-2xs font-bold py-0.5 px-2 bg-pink-300 text-white rounded">Free</div>
-                            <span class="text-lg font-bold">무료</span>
-                          {{else}}
-                            <span class="text-lg font-bold">{{price option_value.price currency="KRW" currencyFormat="none"}}원</span>
-                          {{/match}}
-                        </div>
-                      {{/if}}
+                      <div class="text-xs text-gray-600 mb-1">유료회원할인가</div>
+                      <div class="flex items-baseline gap-1 md:gap-2">
+                        {{#match option_value.price_sale "=" null}}
+                          <div class="text-3xs md:text-2xs font-bold py-0.5 px-1.5 md:px-2 bg-[#045CF3] text-white rounded-[20px]">Free</div>
+                          <span class="text-sm md:text-lg font-bold">무료</span>
+                        {{else match option_value.price_sale "=" 0}}
+                          <div class="text-3xs md:text-2xs font-bold py-0.5 px-1.5 md:px-2 bg-[#045CF3] text-white rounded-[20px]">100% Off</div>
+                          <span class="text-sm md:text-lg font-bold">무료</span>
+                        {{else}}
+                          {{#if option_value.price_original}}
+                            <div class="discount-badge text-3xs md:text-2xs font-bold py-0.5 px-1.5 md:px-2 bg-[#FB7878] text-white rounded-[20px] whitespace-nowrap" data-original="{{price option_value.price_original currency="KRW" currencyFormat="none"}}" data-sale="{{price option_value.price_sale currency="KRW" currencyFormat="none"}}">할인</div>
+                          {{/if}}
+                          <span class="text-sm md:text-lg font-bold whitespace-nowrap">{{price option_value.price_sale currency="KRW" currencyFormat="none"}}원</span>
+                          {{#if option_value.price_original}}
+                            <span class="text-2xs md:text-xs text-gray-400 line-through whitespace-nowrap">{{price option_value.price_original currency="KRW" currencyFormat="none"}}원</span>
+                          {{/if}}
+                        {{/match}}
+                      </div>
                     {{else}}
                       <div class="text-xs text-gray-600 mb-1">유료회원할인가</div>
-                      {{#if option_value.price_sale}}
-                        <div class="flex items-baseline gap-1 md:gap-2">
-                          {{#match option_value.price_sale "=" null}}
-                            <div class="text-3xs md:text-2xs font-bold py-0.5 px-1.5 md:px-2 bg-[#045CF3] text-white rounded-[20px]">Free</div>
-                            <span class="text-sm md:text-lg font-bold">무료</span>
-                          {{else match option_value.price_sale "=" 0}}
-                            <div class="text-3xs md:text-2xs font-bold py-0.5 px-1.5 md:px-2 bg-[#045CF3] text-white rounded-[20px]">Free</div>
-                            <span class="text-sm md:text-lg font-bold">무료</span>
-                          {{else}}
-                            {{#if option_value.price_original}}
-                              <div class="discount-badge text-3xs md:text-2xs font-bold py-0.5 px-1.5 md:px-2 bg-[#FB7878] text-white rounded-[20px] whitespace-nowrap" data-original="{{price option_value.price_original currency="KRW" currencyFormat="none"}}" data-sale="{{price option_value.price_sale currency="KRW" currencyFormat="none"}}">할인</div>
-                            {{/if}}
-                            <span class="text-sm md:text-lg font-bold whitespace-nowrap">{{price option_value.price_sale currency="KRW" currencyFormat="none"}}{{#if option_value.price_sale}}원{{/if}}</span>
-                            {{#if option_value.price_original}}
-                              <span class="text-2xs md:text-xs text-gray-400 line-through whitespace-nowrap">{{price option_value.price_original currency="KRW" currencyFormat="none"}}원</span>
-                            {{/if}}
-                          {{/match}}
-                        </div>
-                      {{else}}
-                        <div class="flex items-center gap-2">
-                          {{#match option_value.price "=" null}}
-                            <div class="text-2xs font-bold py-0.5 px-2 bg-[#045CF3] text-white rounded-[20px]">Free</div>
-                            <span class="text-lg font-bold">무료</span>
-                          {{else match option_value.price "=" 0}}
-                            <div class="text-2xs font-bold py-0.5 px-2 bg-[#045CF3] text-white rounded-[20px]">Free</div>
-                            <span class="text-lg font-bold">무료</span>
-                          {{else}}
-                            <span class="text-lg font-bold text-gray-400">{{price option_value.price currency="KRW" currencyFormat="none"}}{{#if option_value.price}}원{{/if}}</span>
-                          {{/match}}
-                        </div>
-                      {{/if}}
+                      <div class="flex items-baseline gap-1 md:gap-2">
+                        {{#match option_value.price_sale "=" null}}
+                          <div class="text-3xs md:text-2xs font-bold py-0.5 px-1.5 md:px-2 bg-[#045CF3] text-white rounded-[20px]">Free</div>
+                          <span class="text-sm md:text-lg font-bold">무료</span>
+                        {{else match option_value.price_sale "=" 0}}
+                          <div class="text-3xs md:text-2xs font-bold py-0.5 px-1.5 md:px-2 bg-[#045CF3] text-white rounded-[20px]">100% Off</div>
+                          <span class="text-sm md:text-lg font-bold">무료</span>
+                        {{else}}
+                          {{#if option_value.price_original}}
+                            <div class="discount-badge text-3xs md:text-2xs font-bold py-0.5 px-1.5 md:px-2 bg-[#FB7878] text-white rounded-[20px] whitespace-nowrap" data-original="{{price option_value.price_original currency="KRW" currencyFormat="none"}}" data-sale="{{price option_value.price_sale currency="KRW" currencyFormat="none"}}">할인</div>
+                          {{/if}}
+                          <span class="text-sm md:text-lg font-bold whitespace-nowrap text-black">{{price option_value.price_sale currency="KRW" currencyFormat="none"}}원</span>
+                          {{#if option_value.price_original}}
+                            <span class="text-2xs md:text-xs text-gray-400 line-through whitespace-nowrap">{{price option_value.price_original currency="KRW" currencyFormat="none"}}원</span>
+                          {{/if}}
+                        {{/match}}
+                      </div>
                     {{/if}}
                   </div>
                 </div>
