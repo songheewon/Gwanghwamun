@@ -339,8 +339,19 @@ body.view-mobile-menu .drawer {
 
 
 .shop-carousel {
+  background-color: transparent !important;
+
+  .shop-swiper {
+    background-color: transparent !important;
+  }
+
+  .swiper-wrapper {
+    background-color: transparent !important;
+  }
+
   .swiper-slide {
     height: 238px;
+    background-color: transparent !important;
   }
 
   .swiper-button-prev,
