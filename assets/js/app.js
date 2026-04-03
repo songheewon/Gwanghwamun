@@ -191,6 +191,7 @@ const swiper = new Swiper('.shop-swiper', {
   // If we need pagination
   pagination: {
     el: '.shop-carousel .swiper-pagination',
+    clickable: true,
   },
 
   // Navigation arrows
@@ -199,55 +200,44 @@ const swiper = new Swiper('.shop-swiper', {
     prevEl: '.shop-carousel .swiper-button-prev',
   },
 
-  // And if we need scrollbar
-  scrollbar: {
-    el: '.shop-carousel .swiper-scrollbar',
-  },
-
-  spaceBetween: 20,
+  spaceBetween: 12,
 
   // Responsive breakpoints
   breakpoints: {
     // when window width is >= 320px
     320: {
       slidesPerView: 2,
-      spaceBetween: 20,
-      grid: {
-        rows: 2
-      },
+      spaceBetween: 12,
       navigation: {
         enabled: false
       },
       pagination: {
-        enabled: true
+        enabled: true,
+        clickable: true
       }
     },
     // when window width is >= 480px
     480: {
       slidesPerView: 2,
-      spaceBetween: 30,
-      grid: {
-        rows: 2
-      },
+      spaceBetween: 16,
       navigation: {
         enabled: false
       },
       pagination: {
-        enabled: true
+        enabled: true,
+        clickable: true
       }
     },
     // when window width is >= 640px
     640: {
       slidesPerView: 2,
-      spaceBetween: 40,
-      grid: {
-        rows: 2
-      },
+      spaceBetween: 20,
       navigation: {
         enabled: false
       },
       pagination: {
-        enabled: true
+        enabled: true,
+        clickable: true
       }
     },
     1024: {

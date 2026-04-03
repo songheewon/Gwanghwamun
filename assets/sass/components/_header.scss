@@ -5,6 +5,30 @@
 .c-header {
   padding: $space-24 0;
   background-color: var(--bg-color);
+  &__subscribe {
+    font-family: Font Family;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: sm;
+    line-height: 14px;
+    letter-spacing: 0px;
+    text-align: center;
+    color: #fff;
+    background-color: var(--accent-color);
+    padding: 8px 16px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid var(--accent-color);
+    font-size: 15px;
+    &:hover {
+      background-color: white;
+      color: var(--accent-color);
+    }
+  }
 }
 
 .js-header {
