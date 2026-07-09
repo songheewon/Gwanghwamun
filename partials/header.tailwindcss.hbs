@@ -38,7 +38,7 @@
               <a href='#/portal/account'>MY</a>
               {{else}}
               <a class="" href="/signin/">로그인</a>
-              <a class="flex items-center justify-center w-20 h-[30px] rounded-full bg-core-blue hover:bg-black hover:text-core-blue" href="/signup/">구독하기</a>
+              <a class="inline-flex items-center justify-center w-20 h-[30px] rounded-full hover:!bg-black hover:text-[var(--accent)]" style="--accent: {{@site.accent_color}}; background-color: var(--accent)" href="/signup/">구독하기</a>
               {{/if}}
             </div>
 

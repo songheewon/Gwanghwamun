@@ -109,16 +109,16 @@
                 </a>
                 {{/if}}
                 {{else}}
-                  <a class="flex items-center justify-center w-20 h-[30px] rounded-full bg-core-blue hover:bg-black hover:text-core-blue"
-                href="/membership/">구독하기</a>
+                  <a class="inline-flex items-center justify-center w-20 h-[30px] rounded-full hover:!bg-black hover:text-[var(--accent)]"
+                style="--accent: {{@site.accent_color}}; background-color: var(--accent)" href="/membership/">구독하기</a>
                 {{/if}}
                   <a href='#signout' class='c-nav__link c-nav__link--sign' data-members-signout>{{t 'Log out' }}</a>
                 </div>
               </div>
               {{else}}
               <a class="" href="/signin/">로그인</a>
-              <a class="flex items-center justify-center w-20 h-[30px] rounded-full bg-core-blue hover:bg-black hover:text-core-blue"
-                href="/membership/">구독하기</a>
+              <a class="inline-flex items-center justify-center w-20 h-[30px] rounded-full hover:!bg-black hover:text-[var(--accent)]"
+                style="--accent: {{@site.accent_color}}; background-color: var(--accent)" href="/membership/">구독하기</a>
               {{/if}}
             </div>
 

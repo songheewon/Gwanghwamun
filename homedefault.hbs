@@ -8,6 +8,10 @@
   <title>{{@site.brand_site_title}} - SHOP</title>
 
   <link rel="icon" href="{{@site.icon}}">
+  {{#if @site.icon}}
+  <link rel="icon" href="{{@site.icon}}">
+  <link rel="apple-touch-icon" href="{{@site.icon}}">
+  {{/if}}
 
   {{!-- {{> fonts }} --}}
   {{> compiled/inline-css }}

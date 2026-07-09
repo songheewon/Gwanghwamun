@@ -8,7 +8,10 @@
   <title>{{#if @page}}{{#if @page.slug}}{{#match @page.slug "=" "products"}}제품 목록{{else}}{{ meta_title }}{{/match}}{{else}}{{ meta_title }}{{/if}}{{else}}{{ meta_title }}{{/if}}</title>
 
   <link rel="icon" href="{{@site.icon}}">
-
+  {{#if @site.icon}}
+  <link rel="icon" href="{{@site.icon}}">
+  <link rel="apple-touch-icon" href="{{@site.icon}}">
+  {{/if}}
   {{!-- {{> fonts }} --}}
   {{> compiled/inline-css }}
   {{!-- {{> dark-mode-js }} --}}
