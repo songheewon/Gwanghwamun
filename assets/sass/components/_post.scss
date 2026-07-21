@@ -5,10 +5,40 @@
 .c-post {
   max-width: 650px;
   margin: 0 auto;
-  margin-bottom:2.08rem;
+  margin-bottom: 2.08rem;
 
+  // 기본: 모든 요소 위아래 30px 간격
   > * + * {
-    margin-top: $space-32;
+    margin-top: 30px;
+  }
+
+  // 소제목: 위 30px, 아래 20px
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+
+  // 소제목 다음 요소는 margin-top 제거 (소제목의 margin-bottom이 간격 담당)
+  h1 + *, h2 + *, h3 + *, h4 + *, h5 + *, h6 + * {
+    margin-top: 0;
+  }
+
+  // 이미지와 캡션 사이 20px
+  figure {
+    figcaption {
+      margin-top: 20px;
+    }
+  }
+
+  // 구분선: 위아래 40px
+  hr {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  // 구분선 다음 요소는 margin-top 제거 (hr의 margin-bottom이 간격 담당)
+  hr + * {
+    margin-top: 0;
   }
 }
 
