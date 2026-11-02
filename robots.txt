@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /bluedot/
-Disallow: /p/
-Disallow: /*/comments/
